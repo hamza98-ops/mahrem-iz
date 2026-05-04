@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO & Sosyal Paylaşım -->
+  <title>Mahrem-İz | Mutluluğu Sergileme, Huzuru Yaşa</title>
+  <meta name="description" content="Dijital çağda aile mahremiyetini korumak için ilahiyat perspektifinden akademik analizler, etik araçlar ve pratik rehberler. Sosyalfest 2025 projesi." />
+  <meta name="keywords" content="dijital mahremiyet, aile etiği, sharenting, sosyal medya, İslam, ilahiyat, çocuk güvenliği" />
+  <link rel="canonical" href="https://mahremiz.com.tr/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Mahrem-İz | Mutluluğu Sergileme, Huzuru Yaşa" />
+  <meta property="og:description" content="Aileniz bir emanettir, sergi nesnesi değil. Dijital mahremiyet ve aile etiği üzerine bir farkındalık hareketi." />
+  <meta property="og:url"         content="https://mahremiz.com.tr/" />
+  <meta property="og:site_name"   content="Mahrem-İz" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Mahrem-İz | Dijital Mahremiyet" />
+  <meta name="twitter:description" content="Mutluluğu Sergileme, Huzuru Yaşa. Aile mahremiyeti için ilahiyat perspektifinden bir farkındalık hareketi." />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Fonts: Performance — preconnect her ikisine de -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- defer: DOM hazır olmadan JS çalışmaz, inline onclick ihtiyacını ortadan kaldırır -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <!-- Toast bildirimi (JS tarafından yönetilir) -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-text">Mahrem<span class="logo-accent">-İz</span></span>
+        <span class="logo-tagline">Mutluluğu Sergileme, Huzuru Yaşa</span>
+      </a>
+      <button
+        class="nav-toggle"
+        id="navToggle"
+        aria-label="Menüyü Aç"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="#anasayfa"   class="nav-link">Ana Sayfa</a></li>
+        <li><a href="#akademi"    class="nav-link">Fikir Akademisi</a></li>
+        <li><a href="#karne"      class="nav-link">Etik Karne</a></li>
+        <li><a href="#rehber"     class="nav-link">Ebeveyn Rehberi</a></li>
+        <li><a href="#hakkimizda" class="nav-link">Hakkımızda</a></li>
+        <li><a href="#iletisim"   class="nav-btn">İletişim</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SAYFA 1: ANA SAYFA                        -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="anasayfa">
+
+    <!-- HERO -->
+    <div class="hero" id="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-pattern"></div>
+      <div class="hero-content">
+        <div class="hero-badge">Sosyalfest 2025 — Dijital Mahremiyet &amp; Aile Etiği</div>
+        <h1 class="hero-title">
+          Aileniz Bir <em>Emanettir.</em>
+          <br />Sergi Nesnesi Değil.
+        </h1>
+        <p class="hero-subtitle">
+          Allah (cc), size emanet olarak verdiği bu insanları — eşinizi, çocuklarınızı, yuvanızı —
+          bir gün hesabını soracaktır. Peki siz onları başkalarının beğenisine mi sundunuz?
+        </p>
+        <div class="hero-buttons">
+          <a href="#istatistik" class="btn btn-primary">Farkındalık Yolculuğuna Başla</a>
+          <a href="#karne"      class="btn btn-outline">Etik Karneyi Gör</a>
+        </div>
+      </div>
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span>Aşağı Kaydır</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </div>
+
+    <!-- İSTATİSTİKLER -->
+    <div class="stats-section" id="istatistik">
+      <div class="container">
+        <div class="section-header center">
+          <div class="section-tag">Veriler</div>
+          <h2>Rakamlar Konuşuyor<br /><em>Biz Dinliyor muyuz?</em></h2>
+        </div>
+        <div class="stats-grid">
+
+          <div class="stat-card" data-aos="fade-up">
+            <div class="stat-number">%73</div>
+            <div class="stat-label">Rızasız Paylaşım</div>
+            <div class="stat-divider"></div>
+            <p class="stat-text">
+              Ebeveynlerin, çocuklarına ait fotoğraf ve videoları sosyal medyada paylaşmadan önce
+              çocuklarının iznini <strong>hiçbir zaman</strong> almadığı görülmektedir.
+            </p>
+            <p class="stat-note">
+              Bir çocuk, henüz konuşmayı öğrenmeden binlerce kişinin hafızasına işlenmiş olabilir.
+            </p>
+            <p class="stat-source">
+              Kaynak: <a href="#kaynakca">Nominet UK, "Digital Lives", 2019</a>
+            </p>
+          </div>
+
+          <div class="stat-card featured" data-aos="fade-up" data-aos-delay="100">
+            <div class="stat-number">1.300+</div>
+            <div class="stat-label">Dijital Fotoğraf / Çocuk</div>
+            <div class="stat-divider"></div>
+            <p class="stat-text">
+              Bir Avrupalı çocuk 18 yaşına geldiğinde, ailesi tarafından internette ortalama
+              <strong>1.300'den fazla</strong> fotoğrafının paylaşılmış olduğu tahmin edilmektedir.
+            </p>
+            <p class="stat-note">Bu fotoğrafların nerede, nasıl kullanıldığından kimsenin haberi yok.</p>
+            <p class="stat-source">
+              Kaynak: <a href="#kaynakca">AVG Technologies, "Digital Diaries", 2018</a>
+            </p>
+          </div>
+
+          <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="stat-number">%68</div>
+            <div class="stat-label">Kaynak: Aile</div>
+            <div class="stat-divider"></div>
+            <p class="stat-text">
+              Dijital istismar vakalarının önemli bir kısmında ilk görüntülerin
+              <strong>aile üyeleri tarafından</strong> kamuya açık platformlarda paylaşıldığı tespit edilmektedir.
+            </p>
+            <p class="stat-note">Tehdit bazen dışarıdan değil, sevginin içinden gelir.</p>
+            <p class="stat-source">
+              Kaynak: <a href="#kaynakca">Internet Watch Foundation, Yıllık Rapor, 2021</a>
+            </p>
+          </div>
+
+        </div>
+        <div class="stats-cta">
+          <a href="#akademi" class="btn btn-secondary">Daha Fazla Araştırma Oku</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÜÇLÜ VİZYON -->
+    <div class="vision-section" id="vizyon">
+      <div class="container">
+        <div class="section-header center">
+          <div class="section-tag">Üç Perspektif</div>
+          <h2>Sorunu Görüyoruz,<br /><em>Çözümü Sunuyoruz</em></h2>
+        </div>
+        <div class="vision-grid">
+
+          <div class="vision-card theologic" data-aos="fade-up">
+            <div class="vision-icon">
+              <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="2"/><path d="M24 8v8M24 32v8M8 24h8M32 24h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="24" r="6" stroke="currentColor" stroke-width="2"/></svg>
+            </div>
+            <div class="vision-tag">Teolojik Bakış</div>
+            <h3>Göz Hakkından<br />Dijital Hasede</h3>
+            <p>
+              İslam geleneğinde "nazar" yalnızca mitolojik bir inanç değildir; insanın başkasının
+              nimetine duyduğu gizli ya da açık haset duygusunun bir yansımasıdır.
+            </p>
+            <blockquote class="vision-quote">
+              "Nazar haktır." — Muhammed el-Buhârî, el-Câmiu's-Sahîh, Kitâbu't-Tıb, 36
+            </blockquote>
+            <p>
+              Sosyal medya çağında bu tehlikeyi yeni bir boyuta taşıdık: Artık nazarın hedefi
+              onbinlerce yabancının ekranında dönen mutlu aile fotoğraflarıdır.
+            </p>
+            <a href="#akademi" class="vision-link">Teolojik Analizi Oku →</a>
+          </div>
+
+          <div class="vision-card sociologic" data-aos="fade-up" data-aos-delay="120">
+            <div class="vision-icon">
+              <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="6" y="6" width="36" height="36" rx="4" stroke="currentColor" stroke-width="2"/><path d="M16 24h16M16 16h16M16 32h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="vision-tag">Sosyolojik Eleştiri</div>
+            <h3>Bir Meta Olarak<br />Mutluluk</h3>
+            <p>
+              Modern sosyal medya ekonomisi, duyguları içeriğe, içerikleri reklama dönüştürür.
+              Çocuğunuzun doğum günü pastası, yıllık izninizin sahil fotoğrafı…
+            </p>
+            <p>
+              Siz mutluluğunuzu paylaşıyorsunuz. <strong>Platform onu satıyor.</strong>
+            </p>
+            <p>
+              Bu döngüde aile mahremiyeti bir kayıp olarak değil, "içerik üretme fırsatı
+              olarak kaçırılan bir an" olarak görülmeye başlanmıştır.
+            </p>
+            <a href="#akademi" class="vision-link">Makaleyi Oku →</a>
+          </div>
+
+          <div class="vision-card solution" data-aos="fade-up" data-aos-delay="240">
+            <div class="vision-icon">
+              <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 6L6 18v12c0 9.94 7.67 19.24 18 21 10.33-1.76 18-11.06 18-21V18L24 6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M18 24l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="vision-tag">Çözüm Odaklılık</div>
+            <h3>Dijital Kale:<br />Mahremiyet</h3>
+            <p>
+              Mahremiyet bir yasak değil, bir kaledir. İçinde gerçek sıcaklığın korunduğu,
+              yabancı gözlerden uzak, nefes alabilen bir yuvadır.
+            </p>
+            <p>
+              Mahrem-İz, bu kaleyi nasıl kuracağınızı pratik araçlar, ilahiyat perspektifinden
+              etik rehberler ve bir aile sözleşmesiyle anlatır.
+            </p>
+            <p>
+              Çünkü teknolojiyi terk etmek değil, <strong>ona hâkim olmak</strong> gerekir.
+            </p>
+            <a href="#rehber" class="vision-link">Dijital Aile Rehberine Git →</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SAYFA 2: DİJİTAL FİKİR AKADEMİSİ        -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="akademi" class="akademi-section">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-tag">Akademik Derinlik</div>
+        <h2>Dijital Fikir<br /><em>Akademisi</em></h2>
+        <p class="section-desc">
+          İlahiyat öğrencilerinin kaleminden; çağın sorularına geleneğin ışığıyla verilen cevaplar.
+        </p>
+        <blockquote class="section-verse">
+          "İnsanların gizliliklerini araştırmayın." — Kur'ân-ı Kerîm, Hucurât Sûresi, 49:12
+        </blockquote>
+      </div>
+
+      <!-- TABS: role="tablist" ile erişilebilirlik -->
+      <div class="akademi-tabs" role="tablist" aria-label="Makale Kategorileri">
+        <button class="tab-btn active"
+                data-tab="fikih"
+                role="tab"
+                aria-selected="true"
+                aria-controls="tab-fikih"
+                id="tab-btn-fikih">Modern Fıkıh</button>
+        <button class="tab-btn"
+                data-tab="sharenting"
+                role="tab"
+                aria-selected="false"
+                aria-controls="tab-sharenting"
+                id="tab-btn-sharenting">Sharenting</button>
+        <button class="tab-btn"
+                data-tab="nazar"
+                role="tab"
+                aria-selected="false"
+                aria-controls="tab-nazar"
+                id="tab-btn-nazar">Nazar &amp; Algoritma</button>
+      </div>
+
+      <div class="tab-content" id="tab-fikih" role="tabpanel" aria-labelledby="tab-btn-fikih">
+        <div class="akademi-article">
+          <div class="article-meta">
+            <span class="article-tag">Fıkıh &amp; Dijital Etik</span>
+            <span class="article-read">8 dk okuma</span>
+          </div>
+          <h3>Modern Fıkıh ve Dijital Dünya</h3>
+          <div class="article-lead">
+            <strong>Özel hayatın dokunulmazlığı, İslam hukukunda köklü bir ilkedir.</strong>
+          </div>
+          <p>
+            Fıkıh geleneğinde "hürmet-i hânegî" — yani hane mahremiyeti — bireyin ve ailenin
+            korunmasını garanti altına alan temel değerlerden biridir. Kur'ân-ı Kerîm, izinsiz
+            ev aramayı yasaklamış <em>(Nûr Sûresi, 24:27-28)</em>, Hz. Peygamber (sav) başkasının
+            sırrını ifşa etmeyi ve insanları gözetlemeyi kesinlikle men etmiştir.
+          </p>
+          <p>
+            Peki bu ilkeler, dijital dünyanın şeffaf ekranlarında nasıl hayat bulur?
+          </p>
+          <div class="article-highlight">
+            <p>
+              <strong>Günümüzde "haneye tecavüz" artık kapıdan değil, ekrandan gerçekleşmektedir.</strong>
+              Birinin çocuğunun fotoğrafını paylaşmak, ailesinin özel anlarını "etiketlemek",
+              izinsiz konum paylaşımı yapmak — bunların tamamı klasik fıkhın
+              "müdâhale-i hürmet" yasağı kapsamında değerlendirilebilir.
+            </p>
+          </div>
+          <p>
+            Modern fıkıh âlimleri, bu meselelere dair fetvalar üretmeye devam etmektedir.
+            Mahrem-İz, bu tartışmayı gençlere ve ailelere taşımayı hedefler.
+          </p>
+          <blockquote class="article-quote">
+            "Her nimetin bir hakkı vardır; mahremiyetin hakkı ise onu korumaktır."
+          </blockquote>
+        </div>
+      </div>
+
+      <div class="tab-content hidden" id="tab-sharenting" role="tabpanel" aria-labelledby="tab-btn-sharenting">
+        <div class="akademi-article">
+          <div class="article-meta">
+            <span class="article-tag">Ebeveynlik Etiği</span>
+            <span class="article-read">10 dk okuma</span>
+          </div>
+          <h3>Sharenting: Ebeveynlik mi, Yayıncılık mı?</h3>
+          <div class="article-lead">
+            <strong>"Sharenting" — dijital çağın en kritik etik sorunlarından birini tanımlar.</strong>
+          </div>
+          <p>
+            Bir ebeveyn, çocuğunun ilk adımlarını, doğum gününü, hastalığını, hatta ağlarken
+            çektiği fotoğrafı sosyal medyada yayınladığında ne yapmış olur?
+          </p>
+          <div class="three-points">
+            <div class="point-card">
+              <div class="point-num">01</div>
+              <h4>Rıza Meselesi</h4>
+              <p>
+                Çocuk, henüz kendi mahremiyeti konusunda karar veremeyecek yaştadır. Ebeveyn
+                bu kararı onun adına alabilir mi? İslam hukuku, velâyet yetkisinin çocuğun
+                <em>zararına</em> kullanılmasını kabul etmez.
+              </p>
+            </div>
+            <div class="point-card">
+              <div class="point-num">02</div>
+              <h4>Dijital Kalıcılık</h4>
+              <p>
+                "Silsem de geçer" yanılgısı: İnternet hafızası, insan hafızasından çok daha
+                güçlüdür. Bugün paylaşılan bir fotoğraf, çocuğun 20 yıl sonra aleyhine
+                kullanılabilir.
+              </p>
+            </div>
+            <div class="point-card">
+              <div class="point-num">03</div>
+              <h4>Niyetin Ötesi</h4>
+              <p>
+                "Anılarımı paylaşıyorum" niyeti başlı başına yeterli midir? İslam ahlâkı,
+                yalnızca niyet değil, eylemin sonuçlarını da hesaba katar
+                <em>(Makâsıd-ı Şerîa ilkesi)</em>.
+              </p>
+            </div>
+          </div>
+          <blockquote class="article-quote">
+            Sharenting bir sevgi gösterisi olabilir. Ama mahremiyet, sevginin en derin dilidir.
+          </blockquote>
+        </div>
+      </div>
+
+      <div class="tab-content hidden" id="tab-nazar" role="tabpanel" aria-labelledby="tab-btn-nazar">
+        <div class="akademi-article">
+          <div class="article-meta">
+            <span class="article-tag">Teoloji &amp; Teknoloji</span>
+            <span class="article-read">7 dk okuma</span>
+          </div>
+          <h3>Nazar ve Algoritma</h3>
+          <div class="article-lead">
+            <strong>İki bin yıllık bir tehlikenin dijital versiyonu.</strong>
+          </div>
+          <p>
+            Nazar, yalnızca bir Anadolu geleneği değildir. Hadis-i şeriflerde açıkça zikredilmiş,
+            İslam âlimlerince tartışılmış ve gerçekliği Hz. Peygamber (sav) tarafından teyit
+            edilmiştir.
+          </p>
+          <blockquote class="article-quote">
+            "Nazar gerçektir; kader gibi nazar da takdire sebep olabilir."
+            — Müslim b. el-Haccâc, el-Câmiu's-Sahîh, Kitâbu's-Selâm, 42
+          </blockquote>
+          <div class="nazar-list">
+            <div class="nazar-item">
+              <div class="nazar-icon" aria-hidden="true">👁</div>
+              <p>Paylaştığınız mutlu aile fotoğrafı, yüzlerce — bazen binlerce — yabancının gözünden geçer.</p>
+            </div>
+            <div class="nazar-item">
+              <div class="nazar-icon" aria-hidden="true">⚡</div>
+              <p>Bu gözlerin bir kısmında hayranlık vardır; diğerlerinde kıskançlık, kızgınlık ya da nefret.</p>
+            </div>
+            <div class="nazar-item">
+              <div class="nazar-icon" aria-hidden="true">📊</div>
+              <p>Algoritmalar ise en çok dikkat çeken içerikleri daha fazla yayar. Sizi en fazla kimler izliyor? En yoğun duygusal tepki verenler.</p>
+            </div>
+          </div>
+          <div class="article-highlight">
+            <p>
+              Nazar, sosyal medya çağında hiç olmadığı kadar verimli bir zemin bulmuştur.
+              <br /><strong>Peki siz çocuğunuzu, yuvanızı, mutluluğunuzu bu zemine sunmaya devam edecek misiniz?</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SAYFA 3: ETİK KARNE                       -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="karne" class="karne-section">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-tag">İnteraktif Araç</div>
+        <h2>Etik <em>Karne</em></h2>
+        <p class="section-desc">
+          Takip ettiğiniz hesaplar sizi şekillendiriyor. Peki onlar bu sorumluluğun farkında mı?
+        </p>
+      </div>
+
+      <div class="karne-intro">
+        <p>
+          Mahrem-İz Etik Karne, bir hesabı "iyi" ya da "kötü" diye damgalamaz. Bunun yerine size
+          <strong>bilinçli bir bakış açısı</strong> kazandırmayı hedefler: Takip ettiğiniz hesapların
+          hangi değerleri temsil ettiğini sorgulamanız için bir çerçeve sunar.
+        </p>
+        <p class="karne-quote">
+          <em>"Çünkü dikkatiniz bir oy gibidir: Nereye verirseniz, orayı büyütürsünüz."</em>
+        </p>
+      </div>
+
+      <div class="karne-grid" id="karneGrid">
+
+        <!-- KARNE KARTI — her birinde fieldset + radio ile erişilebilir yıldız puanlama -->
+        <div class="karne-card" data-criterion="1">
+          <div class="karne-card-header">
+            <div class="karne-num">01</div>
+            <fieldset class="karne-stars" data-id="1">
+              <legend class="sr-only">Puan (1–5 yıldız)</legend>
+              <input type="radio" name="karne-1" id="k1-1" value="1" class="star-radio" /><label for="k1-1" title="1 yıldız">★</label>
+              <input type="radio" name="karne-1" id="k1-2" value="2" class="star-radio" /><label for="k1-2" title="2 yıldız">★</label>
+              <input type="radio" name="karne-1" id="k1-3" value="3" class="star-radio" /><label for="k1-3" title="3 yıldız">★</label>
+              <input type="radio" name="karne-1" id="k1-4" value="4" class="star-radio" /><label for="k1-4" title="4 yıldız">★</label>
+              <input type="radio" name="karne-1" id="k1-5" value="5" class="star-radio" /><label for="k1-5" title="5 yıldız">★</label>
+            </fieldset>
+          </div>
+          <h4>Çocuk Mahremiyetine Saygı</h4>
+          <p>Hesap, çocukları içeriğin merkezine koyuyor mu? Ağlama, hastalık veya mahcubiyet anları paylaşılıyor mu? Bir çocuğun rızası olmadan kamuoyuna sunulması, onun dijital kimliği üzerindeki en temel hakkını ihlal eder.</p>
+        </div>
+
+        <div class="karne-card" data-criterion="2">
+          <div class="karne-card-header">
+            <div class="karne-num">02</div>
+            <fieldset class="karne-stars" data-id="2">
+              <legend class="sr-only">Puan (1–5 yıldız)</legend>
+              <input type="radio" name="karne-2" id="k2-1" value="1" class="star-radio" /><label for="k2-1" title="1 yıldız">★</label>
+              <input type="radio" name="karne-2" id="k2-2" value="2" class="star-radio" /><label for="k2-2" title="2 yıldız">★</label>
+              <input type="radio" name="karne-2" id="k2-3" value="3" class="star-radio" /><label for="k2-3" title="3 yıldız">★</label>
+              <input type="radio" name="karne-2" id="k2-4" value="4" class="star-radio" /><label for="k2-4" title="4 yıldız">★</label>
+              <input type="radio" name="karne-2" id="k2-5" value="5" class="star-radio" /><label for="k2-5" title="5 yıldız">★</label>
+            </fieldset>
+          </div>
+          <h4>Reklam Şeffaflığı</h4>
+          <p>Ücretli iş birlikleri ve sponsorlu içerikler açıkça belirtiliyor mu? Bir influencer, reklamı içerik gibi sunduğunda yalnızca yasaları değil, güveni de çiğner.</p>
+        </div>
+
+        <div class="karne-card" data-criterion="3">
+          <div class="karne-card-header">
+            <div class="karne-num">03</div>
+            <fieldset class="karne-stars" data-id="3">
+              <legend class="sr-only">Puan (1–5 yıldız)</legend>
+              <input type="radio" name="karne-3" id="k3-1" value="1" class="star-radio" /><label for="k3-1" title="1 yıldız">★</label>
+              <input type="radio" name="karne-3" id="k3-2" value="2" class="star-radio" /><label for="k3-2" title="2 yıldız">★</label>
+              <input type="radio" name="karne-3" id="k3-3" value="3" class="star-radio" /><label for="k3-3" title="3 yıldız">★</label>
+              <input type="radio" name="karne-3" id="k3-4" value="4" class="star-radio" /><label for="k3-4" title="4 yıldız">★</label>
+              <input type="radio" name="karne-3" id="k3-5" value="5" class="star-radio" /><label for="k3-5" title="5 yıldız">★</label>
+            </fieldset>
+          </div>
+          <h4>Aile Dinamiklerinin Araçsallaştırılması</h4>
+          <p>Eş kavgaları, çocuk isyanları veya aile krizleri "eğlenceli içerik" olarak sunuluyor mu? Aile içi gerilimlerin izleyici kazanmak için sergilenmesi, mahremiyetin en derin biçimde ihlalidir.</p>
+        </div>
+
+        <div class="karne-card" data-criterion="4">
+          <div class="karne-card-header">
+            <div class="karne-num">04</div>
+            <fieldset class="karne-stars" data-id="4">
+              <legend class="sr-only">Puan (1–5 yıldız)</legend>
+              <input type="radio" name="karne-4" id="k4-1" value="1" class="star-radio" /><label for="k4-1" title="1 yıldız">★</label>
+              <input type="radio" name="karne-4" id="k4-2" value="2" class="star-radio" /><label for="k4-2" title="2 yıldız">★</label>
+              <input type="radio" name="karne-4" id="k4-3" value="3" class="star-radio" /><label for="k4-3" title="3 yıldız">★</label>
+              <input type="radio" name="karne-4" id="k4-4" value="4" class="star-radio" /><label for="k4-4" title="4 yıldız">★</label>
+              <input type="radio" name="karne-4" id="k4-5" value="5" class="star-radio" /><label for="k4-5" title="5 yıldız">★</label>
+            </fieldset>
+          </div>
+          <h4>Karşılaştırma Kültürünü Körükleme</h4>
+          <p>Hesabın içerikleri size "yeterli olmadığınızı" hissettiriyor mu? Gösteriş içerikli paylaşımlar, sosyal medyanın ruhsal hasarlarından biri olan kıskançlığı sistematik olarak üretir.</p>
+        </div>
+
+        <div class="karne-card" data-criterion="5">
+          <div class="karne-card-header">
+            <div class="karne-num">05</div>
+            <fieldset class="karne-stars" data-id="5">
+              <legend class="sr-only">Puan (1–5 yıldız)</legend>
+              <input type="radio" name="karne-5" id="k5-1" value="1" class="star-radio" /><label for="k5-1" title="1 yıldız">★</label>
+              <input type="radio" name="karne-5" id="k5-2" value="2" class="star-radio" /><label for="k5-2" title="2 yıldız">★</label>
+              <input type="radio" name="karne-5" id="k5-3" value="3" class="star-radio" /><label for="k5-3" title="3 yıldız">★</label>
+              <input type="radio" name="karne-5" id="k5-4" value="4" class="star-radio" /><label for="k5-4" title="4 yıldız">★</label>
+              <input type="radio" name="karne-5" id="k5-5" value="5" class="star-radio" /><label for="k5-5" title="5 yıldız">★</label>
+            </fieldset>
+          </div>
+          <h4>Dijital Bağımlılığı Teşvik</h4>
+          <p>Hesap, çocukların ve izleyicilerin ekran başında geçireceği zamanı artırmayı hedefleyen içerikler üretiyor mu? Gerçek hayat bağlarını güçlendiriyor mu, yoksa koparıyor mu?</p>
+        </div>
+
+        <div class="karne-card" data-criterion="6">
+          <div class="karne-card-header">
+            <div class="karne-num">06</div>
+            <fieldset class="karne-stars" data-id="6">
+              <legend class="sr-only">Puan (1–5 yıldız)</legend>
+              <input type="radio" name="karne-6" id="k6-1" value="1" class="star-radio" /><label for="k6-1" title="1 yıldız">★</label>
+              <input type="radio" name="karne-6" id="k6-2" value="2" class="star-radio" /><label for="k6-2" title="2 yıldız">★</label>
+              <input type="radio" name="karne-6" id="k6-3" value="3" class="star-radio" /><label for="k6-3" title="3 yıldız">★</label>
+              <input type="radio" name="karne-6" id="k6-4" value="4" class="star-radio" /><label for="k6-4" title="4 yıldız">★</label>
+              <input type="radio" name="karne-6" id="k6-5" value="5" class="star-radio" /><label for="k6-5" title="5 yıldız">★</label>
+            </fieldset>
+          </div>
+          <h4>Din veya Değerlerin Araçsallaştırılması</h4>
+          <p>Dini ya da geleneksel değerler, yalnızca içerik üretmek veya ürün satmak amacıyla kullanılıyor mu? Bu davranış hem dini değerlere hem de izleyiciye zarar verir.</p>
+        </div>
+
+        <div class="karne-card" data-criterion="7">
+          <div class="karne-card-header">
+            <div class="karne-num">07</div>
+            <fieldset class="karne-stars" data-id="7">
+              <legend class="sr-only">Puan (1–5 yıldız)</legend>
+              <input type="radio" name="karne-7" id="k7-1" value="1" class="star-radio" /><label for="k7-1" title="1 yıldız">★</label>
+              <input type="radio" name="karne-7" id="k7-2" value="2" class="star-radio" /><label for="k7-2" title="2 yıldız">★</label>
+              <input type="radio" name="karne-7" id="k7-3" value="3" class="star-radio" /><label for="k7-3" title="3 yıldız">★</label>
+              <input type="radio" name="karne-7" id="k7-4" value="4" class="star-radio" /><label for="k7-4" title="4 yıldız">★</label>
+              <input type="radio" name="karne-7" id="k7-5" value="5" class="star-radio" /><label for="k7-5" title="5 yıldız">★</label>
+            </fieldset>
+          </div>
+          <h4>Kriz Anında Hesap Verebilirlik</h4>
+          <p>Hesap bir hata yaptığında eleştiriye nasıl tepki veriyor? Özür dilerken bile içerik üretmek, hesap verebilirliğin değil gösterinin bir biçimidir.</p>
+        </div>
+
+      </div>
+
+      <!-- SONUÇ KUTUSU -->
+      <div class="karne-result" id="karneResult">
+        <div class="result-traffic" id="resultTraffic" aria-hidden="true"></div>
+        <div class="result-score">
+          <span id="scoreValue">–</span>
+          <span class="result-label">/ 35 puan</span>
+        </div>
+        <div class="result-bar" role="progressbar" aria-valuemin="0" aria-valuemax="35" aria-valuenow="0" id="resultBar">
+          <div class="result-fill" id="resultFill"></div>
+        </div>
+        <p class="result-text" id="resultText">Kriterleri değerlendirin, sonuç burada görünecek.</p>
+        <div class="result-actions">
+          <button class="btn btn-primary" id="resetKarne">Karneyi Sıfırla</button>
+          <button class="btn" id="copyKarne" style="display:none">Sonucu Kopyala</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SAYFA 4: EBEVEYN REHBERİ & MANİFESTO     -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="rehber" class="rehber-section">
+    <div class="container">
+
+      <!-- DİJİTAL AİLE SÖZLEŞMESİ -->
+      <div class="sozlesme-block">
+        <div class="section-header center">
+          <div class="section-tag">Pratik Araç</div>
+          <h2>Dijital Aile<br /><em>Sözleşmesi</em></h2>
+          <p class="section-desc">Bir sayfayı birlikte imzalayın. Bir ömrü birlikte koruyun.</p>
+        </div>
+
+        <div class="sozlesme-intro">
+          <p>
+            Bu sözleşme, bir yasak listesi değil; ailenizin birlikte oluşturduğu ve sahiplendiği
+            bir sözdür. Her madde, sohbet başlatmak, değerleri paylaşmak ve dijital dünyada
+            bilinçli bir duruş sergilemek için tasarlanmıştır.
+          </p>
+          <p>
+            Aşağıdaki maddeleri ailenizle birlikte okuyun, tartışın ve gerekirse kendi
+            değerlerinize göre uyarlayın. <strong>İmzalamak bir ritüeldir:</strong>
+            "Biz bu değerlere sahibiz" demenin en güzel yolu.
+          </p>
+        </div>
+
+        <div class="madde-list">
+          <div class="madde-item" data-aos="fade-right">
+            <div class="madde-num">01</div>
+            <div class="madde-content">
+              <h4>Sofrada Biz Varız</h4>
+              <p class="madde-quote">"Yemek masası bir tapınaktır; orada ekran değil, sohbet hüküm sürer."</p>
+              <p>Yemek zamanları telefonsuz geçirilir. Masada her sesin değeri vardır; hiçbir bildirim, bir aile ferdinin sözünden önce gelemez.</p>
+            </div>
+            <div class="madde-check">
+              <input type="checkbox" id="m1" class="madde-checkbox" /><label for="m1"></label>
+            </div>
+          </div>
+
+          <div class="madde-item" data-aos="fade-right" data-aos-delay="60">
+            <div class="madde-num">02</div>
+            <div class="madde-content">
+              <h4>Çocuğumuzun Sesi Ona Ait</h4>
+              <p class="madde-quote">"Fotoğraflamadan önce sor; paylaşmadan önce düşün."</p>
+              <p>Çocuğumuzu sosyal medyada paylaşmadan önce, bu paylaşımın onun yararına mı yoksa zararına mı olabileceğini tartarız. Büyüdükçe, söz hakkını ona devrederiz.</p>
+            </div>
+            <div class="madde-check">
+              <input type="checkbox" id="m2" class="madde-checkbox" /><label for="m2"></label>
+            </div>
+          </div>
+
+          <div class="madde-item" data-aos="fade-right" data-aos-delay="120">
+            <div class="madde-num">03</div>
+            <div class="madde-content">
+              <h4>Ev İçi Özel Kalır</h4>
+              <p class="madde-quote">"Yuvanın duvarları, duvarların ötesine geçmez."</p>
+              <p>Aile içinde yaşanan anlaşmazlıklar, krizler ve duygusal anlar sosyal medyaya taşınmaz. Çözüm kapıların ardında aranır, izleyici kalabalığında değil.</p>
+            </div>
+            <div class="madde-check">
+              <input type="checkbox" id="m3" class="madde-checkbox" /><label for="m3"></label>
+            </div>
+          </div>
+
+          <div class="madde-item" data-aos="fade-right" data-aos-delay="180">
+            <div class="madde-num">04</div>
+            <div class="madde-content">
+              <h4>Takip Ettiğimiz Hesaplara Sahip Çıkarız</h4>
+              <p class="madde-quote">"Dijital komşumuzu seçerken aynı titizliği gösteririz."</p>
+              <p>Hangi hesapları takip ettiğimizi, hangi içeriklere zaman ayırdığımızı birlikte gözden geçiririz. Değerlerimizle çelişen içerikleri hayatımızdan çıkarmaktan çekinmeyiz.</p>
+            </div>
+            <div class="madde-check">
+              <input type="checkbox" id="m4" class="madde-checkbox" /><label for="m4"></label>
+            </div>
+          </div>
+
+          <div class="madde-item" data-aos="fade-right" data-aos-delay="240">
+            <div class="madde-num">05</div>
+            <div class="madde-content">
+              <h4>Uyku Saatinde Ekran Susar</h4>
+              <p class="madde-quote">"Gece, yalnızca aile içindir; bildirimler bekleyebilir."</p>
+              <p>Uyumadan en az bir saat önce telefon ve ekranlar kapatılır. Gece vakti dijital değil, ruhi bir zaman dilimidir.</p>
+            </div>
+            <div class="madde-check">
+              <input type="checkbox" id="m5" class="madde-checkbox" /><label for="m5"></label>
+            </div>
+          </div>
+
+          <div class="madde-item" data-aos="fade-right" data-aos-delay="300">
+            <div class="madde-num">06</div>
+            <div class="madde-content">
+              <h4>Paylaşmadan Önce Dur</h4>
+              <p class="madde-quote">"Bu paylaşım kime hizmet ediyor?"</p>
+              <p>Her paylaşımdan önce şunu sorarız: Bu içerik gerçekten başkasına faydalı mı, yoksa yalnızca onay ve beğeni için mi? Cevabımız ikincisi ise, paylaşmayı erteleriz.</p>
+            </div>
+            <div class="madde-check">
+              <input type="checkbox" id="m6" class="madde-checkbox" /><label for="m6"></label>
+            </div>
+          </div>
+
+          <div class="madde-item" data-aos="fade-right" data-aos-delay="360">
+            <div class="madde-num">07</div>
+            <div class="madde-content">
+              <h4>Hata Yaptığımızda Konuşuruz</h4>
+              <p class="madde-quote">"Ceza değil; diyalog seçeriz."</p>
+              <p>Bu sözleşmeye aykırı davranan aile üyesine kızmaz, suçlamayız. Neden böyle hissettiğini, neye ihtiyaç duyduğunu dinler; birlikte yeniden yola çıkarız.</p>
+            </div>
+            <div class="madde-check">
+              <input type="checkbox" id="m7" class="madde-checkbox" /><label for="m7"></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="sozlesme-imza">
+          <h4>İmzalar</h4>
+          <div class="imza-grid">
+            <div class="imza-line"><input type="text" placeholder="Ad Soyad" aria-label="1. imza - Ad Soyad" /><span>Tarih: ___________</span></div>
+            <div class="imza-line"><input type="text" placeholder="Ad Soyad" aria-label="2. imza - Ad Soyad" /><span>Tarih: ___________</span></div>
+            <div class="imza-line"><input type="text" placeholder="Ad Soyad" aria-label="3. imza - Ad Soyad" /><span>Tarih: ___________</span></div>
+            <div class="imza-line"><input type="text" placeholder="Ad Soyad" aria-label="4. imza - Ad Soyad" /><span>Tarih: ___________</span></div>
+          </div>
+        </div>
+
+        <div class="sozlesme-cta">
+          <!-- Inline onclick kaldırıldı; script.js'deki #btnPrint dinleyicisi yönetir -->
+          <button class="btn btn-primary" id="btnPrint">Sözleşmeyi Yazdır &amp; İmzala</button>
+        </div>
+      </div>
+
+      <!-- YAŞA GÖRE REHBER (Accordion) -->
+      <div class="yas-rehber" id="yasRehber">
+        <div class="section-header center">
+          <div class="section-tag">Yaşa Göre Rehber</div>
+          <h2>Hangi Yaş İçin<br /><em>Ne Öneriyoruz?</em></h2>
+        </div>
+        <div class="yas-accordion">
+
+          <div class="yas-item">
+            <button class="yas-btn" aria-expanded="false" aria-controls="yas-0-6">
+              <span>0–6 Yaş — Temel Koruma</span>
+              <span class="yas-arrow" aria-hidden="true">▼</span>
+            </button>
+            <div class="yas-content" id="yas-0-6">
+              <ul class="yas-list">
+                <li>Bu yaş grubunda çocuk, dijital kimlik konusunda hiçbir farkındalığa sahip değildir. Her paylaşım kararı tamamen ebeveynindir — ve tamamen sizin sorumluluğunuzdur.</li>
+                <li>Fotoğraf ve video paylaşımından mümkün olduğunca kaçının. Yüzü göstermeyen, konum içermeyen paylaşımları tercih edin.</li>
+                <li>Ekran süresi bu yaşta günlük 30 dakikayı aşmamalıdır (Dünya Sağlık Örgütü, 2019).</li>
+                <li>Uyku ve yemek rutinlerinde ekranı tamamen devre dışı bırakın.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="yas-item">
+            <button class="yas-btn" aria-expanded="false" aria-controls="yas-7-12">
+              <span>7–12 Yaş — Bilinç Oluşturma</span>
+              <span class="yas-arrow" aria-hidden="true">▼</span>
+            </button>
+            <div class="yas-content" id="yas-7-12">
+              <ul class="yas-list">
+                <li>"Neden paylaşıyoruz?" sorusunu çocuğa sorun. "Bu fotoğraf seni mutlu mu eder?" diye onunla birlikte karar verin.</li>
+                <li>Dijital ayak izi kavramını, yaşına uygun örneklerle açıklayın: "İnternete bir şey koyduğunda, silesek bile kopyaları kalabilir."</li>
+                <li>Sosyal medya hesaplarını çocuğun haberi olmadan yönetmeyin; hangi içeriklerin paylaşıldığını birlikte görün.</li>
+                <li>Algoritmanın ne olduğunu birlikte keşfedin; "neden bu videoyu sana gösteriyor?" sorusunu birlikte sorun.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="yas-item">
+            <button class="yas-btn" aria-expanded="false" aria-controls="yas-13-18">
+              <span>13–18 Yaş — Bağımsız Karar Verme</span>
+              <span class="yas-arrow" aria-hidden="true">▼</span>
+            </button>
+            <div class="yas-content" id="yas-13-18">
+              <ul class="yas-list">
+                <li>Gencin kendi dijital kimliğini yönetme hakkı artık onundur; sayfalarını izniniz olmadan paylaşmayın.</li>
+                <li>Aile sözleşmesini birlikte gözden geçirin ve güncelleyin; kural koyucu değil, diyalog ortağı olun.</li>
+                <li>Sosyal medyanın psikolojik etkilerini — karşılaştırma kültürü, beğeni bağımlılığı — birlikte tartışın.</li>
+                <li>Kendi hesaplarını değerlendirmek için Etik Karne'yi birlikte doldurun.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- MANİFESTO -->
+      <div class="manifesto-block" id="manifesto">
+        <div class="manifesto-header">
+          <div class="section-tag light">Manifesto</div>
+          <h2>Neden<br /><em>Buradayız?</em></h2>
+        </div>
+
+        <div class="manifesto-content">
+          <div class="manifesto-verse">
+            "Ey inananlar! Birbirinizin gizli hallerini araştırmayın."
+            <span>— Kur'ân-ı Kerîm, Hucurât Sûresi, 49:12</span>
+          </div>
+
+          <div class="manifesto-story">
+            <p>Bir gün, bir anne bebeğinin ilk adımlarını attığı anı kayda aldı.</p>
+            <p>Sonra o videoyu paylaştı.</p>
+            <p>Sonra video viral oldu.</p>
+            <p class="manifesto-emphasis">
+              Sonra o bebek, hiç tanımadığı milyonlarca insanın hafızasında yaşamaya başladı —
+              kendi hafızası daha oluşmadan.
+            </p>
+          </div>
+
+          <div class="manifesto-divider">
+            <span>Biz bu hikâyeyi durdurmak için buradayız.</span>
+          </div>
+
+          <div class="manifesto-body">
+            <p><strong>Biz,</strong> ilahiyat okuyan gençleriz. Kütüphanelerde geçen yıllarımızın bize öğrettiği şey şu: İslam medeniyeti, insanın mahremiyetini yalnızca bir hukuk meselesi olarak değil, bir <em>onur meselesi</em> olarak ele almıştır.</p>
+            <p><strong>Biz,</strong> sosyal medyayı kullanıyoruz. Onu reddetmiyoruz. Onu anlıyoruz. Ve tam da bu yüzden, onun neyi yuttuğunu görüyoruz: Sessiz sabah kahvaltılarını, çocukların masum kahkahalarını, eşler arasındaki o sözsüz anları. Bunlar artık <em>"içerik"</em> oldu.</p>
+            <p><strong>Biz,</strong> bu çağda bir şeyin kaybolduğunu fark ettik: Sadece mahremiyet değil — <strong>huzur.</strong></p>
+            <p>İnsanlar mutluluklarını paylaştıkça, o mutluluğun içinde olmak için zaman bırakmıyorlar. Anı yaşamıyorlar, anı <em>yönetiyorlar.</em></p>
+          </div>
+
+          <div class="manifesto-block-inner">
+            <h3>Mahrem-İz, bir yasak hareketi değildir.</h3>
+            <p>Sosyal medyayı kapatmanızı söylemiyoruz. Telefonu denize atmanızı istemiyoruz. Çocuklarınızın fotoğrafını sonsuza dek çekmemenizi emretmiyoruz.</p>
+            <p class="manifesto-call"><strong>Bir şey istiyoruz: Durun. Düşünün. Seçin.</strong></p>
+          </div>
+
+          <div class="manifesto-pillars">
+            <div class="pillar"><span>Her paylaşım bir seçimdir.</span></div>
+            <div class="pillar"><span>Her beğeni bir onay oyudur.</span></div>
+            <div class="pillar"><span>Her takip, o hesaba "var ol, büyü, devam et" demektir.</span></div>
+          </div>
+
+          <div class="manifesto-closing">
+            <p><strong>Aileler, emanettir.</strong> İslam'da aile bir sığınak, bir koruma alanı, bir rahmet mekânıdır. Eşler birbirinin "libâsı"dır <em>(Bakara Sûresi, 2:187)</em> — yani örtüsü, kalkanı, sırdaşı.</p>
+            <p>Mahrem-İz, bu farkındalık için doğdu. Akademik analizler sunuyoruz. Pratik araçlar üretiyoruz. Aileler için sözleşmeler tasarlıyoruz. Ama hepsinin altında tek bir çağrı var:</p>
+            <div class="manifesto-slogan">
+              Mutluluğu Sergileme.<br />Huzuru Yaşa.
+            </div>
+            <p class="manifesto-sign">
+              <em>Bu manifesto, geleceğin nesillerine bırakacağımız dijital mirasın sorumluluğuyla kaleme alınmıştır.</em>
+              <br /><strong>Mahrem-İz Ekibi — İlahiyat Öğrencileri, 2025</strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="manifesto-cta">
+          <!-- navigator.share() ile gerçek paylaşım; inline onclick yok -->
+          <button class="btn btn-light" id="btnShare">Manifestoyu Paylaş</button>
+          <button class="btn btn-light" id="btnPrint2">Yazdır</button>
+          <a href="#iletisim" class="btn btn-outline-light">Harekete Katıl</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SAYFA 5: HAKKIMIZDA                       -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="hakkimizda" class="hakkimizda-section">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-tag">Ekibimiz</div>
+        <h2>Biz <em>Kimiz?</em></h2>
+        <p class="section-desc">Bir sınıftan çıkmış bir fikir; bir fikirden doğmuş bir hareket.</p>
+      </div>
+      <div class="hakkimizda-content">
+        <div class="hakkimizda-text">
+          <p>Mahrem-İz, İlahiyat Fakültesi öğrencilerinin kaleme aldığı akademik sorulardan filizlendi.</p>
+          <p>Önce bir tartışmaydı: <em>"Sosyal medyada mahrem olan nedir? İslam, dijital gizliliğe ne der? Bir çocuğun paylaşılan fotoğrafı, onun hakkına tecavüz müdür?"</em></p>
+          <p>Sonra bu tartışma bir projeye dönüştü. Proje bir platforma. Platform bir harekete.</p>
+          <p>Biz; fıkıh kitaplarını okurken aynı zamanda TikTok'u, Instagram'ı ve algoritmayı takip eden gençleriz. Gelenekle modernite arasında sıkışmış değil, her ikisini de anlayarak köprü kurmaya çalışan insanlarız.</p>
+        </div>
+        <div class="degerler-grid">
+          <div class="deger-card">
+            <div class="deger-icon" aria-hidden="true">📚</div>
+            <h4>İlmîlik</h4>
+            <p>Her iddiamızın arkasında kaynak, ayet, hadis veya bilimsel araştırma vardır.</p>
+          </div>
+          <div class="deger-card">
+            <div class="deger-icon" aria-hidden="true">🤝</div>
+            <h4>Kapsayıcılık</h4>
+            <p>Kimseyi suçlamaz, yargılamayız. Her insan değişebilir; biz bu değişime zemin hazırlarız.</p>
+          </div>
+          <div class="deger-card">
+            <div class="deger-icon" aria-hidden="true">⚙️</div>
+            <h4>Pratiklik</h4>
+            <p>Yalnızca teorik çerçeve sunmaz, hayata geçirilebilir araçlar üretiriz.</p>
+          </div>
+          <div class="deger-card">
+            <div class="deger-icon" aria-hidden="true">✊</div>
+            <h4>Sorumluluk</h4>
+            <p>Söylediklerimizin önce kendimize uygulanması gerektiğine inanırız.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- İLETİŞİM / CTA                            -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="iletisim" class="iletisim-section">
+    <div class="container">
+      <div class="cta-block">
+        <div class="cta-text">
+          <div class="section-tag light">Harekete Geç</div>
+          <h2>Siz de Bu Farkındalık<br /><em>Hareketine Katılın</em></h2>
+          <blockquote class="cta-hadis">
+            "Bir kişiyi iyiliğe yönlendirmen, sana üzerine güneşin doğduğu her şeyden daha hayırlıdır."
+            <span>— Taberânî, el-Mu'cemü'l-Kebîr</span>
+          </blockquote>
+          <p>Mahremiyet bir bireyin meselesi değildir. Bir toplumun, bir neslin, bir medeniyetin meselesidir.</p>
+          <ul class="cta-list">
+            <li>Dijital Aile Sözleşmesi'ni yazdırın, ailenizle imzalayın.</li>
+            <li>Etik Karne'yi doldurun, çevrenizle paylaşın.</li>
+            <li>Bir tanıdığınıza bu sayfayı önerin — bir bilinç, bir paylaşımla yayılır.</li>
+            <li>Sosyalfest platformunda bizi destekleyin.</li>
+          </ul>
+          <div class="cta-buttons">
+            <a href="#rehber" class="btn btn-light">Sözleşmeyi İmzala</a>
+            <a href="#karne"  class="btn btn-outline-light">Etik Karneyi Doldur</a>
+          </div>
+        </div>
+
+        <div class="iletisim-form">
+          <h3>Bize Ulaşın</h3>
+          <form id="contactForm" novalidate>
+            <!-- Honeypot: Botlar doldurur, insanlar görmez -->
+            <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+            <div class="form-group">
+              <label for="name">Adınız</label>
+              <input type="text" id="name" name="name" placeholder="Adınız Soyadınız" required />
+            </div>
+            <div class="form-group">
+              <label for="email">E-posta</label>
+              <input type="email" id="email" name="email" placeholder="ornek@mail.com" required />
+            </div>
+            <div class="form-group">
+              <label for="message">Mesajınız</label>
+              <textarea id="message" name="message" rows="4" placeholder="Görüş, öneri veya sorunuzu yazın..." required></textarea>
+            </div>
+
+            <!-- KVKK: Açık rıza -->
+            <div class="form-group form-checkbox">
+              <input type="checkbox" id="kvkk" name="kvkk" required />
+              <label for="kvkk">
+                Kişisel verilerimin yalnızca iletişim amacıyla işleneceğini kabul ediyorum.
+                <a href="#kaynakca" class="kvkk-link">KVKK Bilgilendirmesi</a>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary full-width">Gönder</button>
+          </form>
+          <div class="iletisim-info">
+            <p>📧 mahremiz@sosyalfest.org</p>
+            <p>📍 İlahiyat Fakültesi — Sosyalfest 2025</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- KAYNAKÇA                                  -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="kaynakca" class="kaynakca-section">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-tag">Akademik Dürüstlük</div>
+        <h2>Kaynaklar &amp; <em>Araştırmalar</em></h2>
+        <p class="section-desc">
+          İddialarımızın arkasında her zaman bir kaynak vardır. Şeffaflık, mahremiyetin ilk adımıdır.
+        </p>
+      </div>
+      <div class="kaynakca-grid">
+        <div class="kaynakca-block">
+          <h4>📊 İstatistik Kaynakları</h4>
+          <ul>
+            <li>Nominet UK — "Share Aware: Sharenting" Report, 2019 <em>(%73 veri kaynağı)</em></li>
+            <li>AVG Technologies — "Digital Diaries" Araştırması, 2018 <em>(1.300+ fotoğraf verisi)</em></li>
+            <li>Internet Watch Foundation — Annual Report on Child Sexual Abuse Material, 2021 <em>(%68 veri kaynağı)</em></li>
+          </ul>
+        </div>
+        <div class="kaynakca-block">
+          <h4>📖 İslam Kaynakları</h4>
+          <ul>
+            <li>Muhammed b. İsmâil el-Buhârî — <em>el-Câmiu's-Sahîh</em>, Kitâbu't-Tıb, 36. Hadis (nazar hadisi)</li>
+            <li>Müslim b. el-Haccâc — <em>el-Câmiu's-Sahîh</em>, Kitâbu's-Selâm, 42. Hadis (nazar hadisi)</li>
+            <li>Taberânî — <em>el-Mu'cemü'l-Kebîr</em> (hayrın yayılması hadisi)</li>
+            <li>Kur'ân-ı Kerîm: Hucurât Sûresi 49:12 · Nûr Sûresi 24:27-28 · Bakara Sûresi 2:187</li>
+          </ul>
+        </div>
+        <div class="kaynakca-block">
+          <h4>🎓 Akademik Çalışmalar</h4>
+          <ul>
+            <li>Blum-Ross, A. &amp; Livingstone, S. — "Sharenting, parent blogging, and the boundaries of the digital self." <em>Popular Communication</em>, 2017.</li>
+            <li>Ouvrein, G. &amp; Verswijvel, K. — "Sharenting: Parental adoration or public humiliation?" <em>Children and Youth Services Review</em>, 2019.</li>
+            <li>WHO — "Guidelines on Physical Activity, Sedentary Behaviour and Sleep for children under 5 years of age", 2019.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="kaynakca-note">
+        Bu site akademik bir proje kapsamında üretilmiştir. İstatistikler en güncel erişilebilir kaynakları temsil etmekte olup her zaman birden fazla kaynakla doğrulanmaya çalışılmaktadır.
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="logo-text">Mahrem<span class="logo-accent">-İz</span></span>
+          <p>Mutluluğu Sergileme, Huzuru Yaşa.</p>
+          <p class="footer-sub">Sosyalfest 2025 — Dijital Mahremiyet &amp; Aile Etiği Projesi</p>
+        </div>
+        <div class="footer-links">
+          <a href="#anasayfa">Ana Sayfa</a>
+          <a href="#akademi">Fikir Akademisi</a>
+          <a href="#karne">Etik Karne</a>
+          <a href="#rehber">Ebeveyn Rehberi</a>
+          <a href="#manifesto">Manifesto</a>
+          <a href="#hakkimizda">Hakkımızda</a>
+          <a href="#kaynakca">Kaynakça</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Mahrem-İz | İlahiyat Öğrencileri Projesi — Sosyalfest</p>
+        <p class="footer-verse">"İnsanların gizliliklerini araştırmayın." — Hucurât Sûresi, 49:12</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
