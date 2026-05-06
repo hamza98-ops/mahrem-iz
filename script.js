@@ -361,6 +361,107 @@ maddeCheckboxes.forEach(cb => {
 });
 
 /* ================================================
+   FIKHÎ DENETİM — SİNEMATİK ANLATI
+   Sentinel-tabanlı IntersectionObserver
+   Mobilde (≤768px) sticky kapalı; observer no-op
+   ================================================ */
+(function initCinema() {
+  const stage     = document.getElementById('cinema');
+  if (!stage) return;
+  const frames    = stage.querySelectorAll('.cinema-frame');
+  const sentinels = stage.querySelectorAll('.cinema-sentinel');
+  const stageEl   = stage.querySelector('.cinema-stage');
+  const progress  = document.getElementById('cinemaProgressFill');
+  const chapter   = document.getElementById('cinemaChapter');
+  const caption   = document.getElementById('cinemaCaption');
+  if (!frames.length || !sentinels.length || !caption) return;
+
+  const total = sentinels.length;
+
+  // Her sahnenin anlatım metni (caption verisi)
+  const scenes = {
+    1:  { tag: 'Sahne 01 · Açılış',           title: 'Dijital Vitrin ve Velâyetin Sınırları',
+          text: 'Klasik İslâm hukuku, "influencer ebeveynlik" fenomenini emanet, velâyet ve maslahat kavramları ışığında nasıl denetler? Dört aşamalı bir denetimin haritası.' },
+    2:  { tag: 'Sahne 02 · Ekosistem',        title: 'Sponsorlu Çocuk İçeriğinin Üçgeni',
+          text: 'Kaynak (çocuk) → Katalizör (algoritma) → Alıcı (ebeveyn hesabı). Bu modelde ebeveyn, çocuğun dijital varlığını bir banka kapısı olarak yönetir.' },
+    3:  { tag: 'Sahne 03 · Temel Kaide',      title: 'Mülkiyet Yanılgısı vs Emanet Kalkanı',
+          text: '"Ebeveyn, çocuk üzerindeki velâyetini mülk hakkı olarak değil, yalnızca çocuğun maslahatı gereği kullanılan ilâhî bir emanet olarak kullanabilir."' },
+    4:  { tag: 'Sahne 04 · Birinci Denetim',  title: 'Eylem Kimin Standartlarına Hizmet Ediyor?',
+          text: 'Piyasanın "etkileşim/sponsor beklentisi" ile İbn Abdüsselâm\'ın "en aslah olan" ölçütü çatışır: Veliler raiyye üzerindeki tasarruflarında en aslah olanı yapmak zorundadır.' },
+    5:  { tag: 'Sahne 05 · Hz. Ömer Formülü', title: 'Yetim Velisi: Üç Halin Hükmü',
+          text: 'Zorunluluk → ihtiyaç kadar al. Telafi → bittikten sonra iade et. İstiğnâ → müstağniyken hiç dokunma. Ebeveyn, ham sahibi değil, menfaat gözeten bir emanetçidir.' },
+    6:  { tag: 'Sahne 06 · İcâre Algoritması',title: 'Çocuğu Çalıştırmak Ne Zaman Caiz?',
+          text: 'Eylem çocuğa bir mâl getiriyor mu? Te\'dib ve eğitim katkısı var mı? Ahlâk öğreniyor mu, sadece pozlama mı? Cevap zinciri caiz/geçersiz arasındaki çizgiyi belirler.' },
+    7:  { tag: 'Sahne 07 · Kabz vs Tasarruf', title: 'Ücret Çocuğun Malıdır',
+          text: 'Ebeveyn ücreti tahsil edebilir (kabz). Ama kendi lüksüne, tatiline veya yaşam standardını yükseltmek için harcayamaz (tasarruf). Aksi halde ecr-i misli zedelenir.' },
+    8:  { tag: 'Sahne 08 · Setr Kaidesi',     title: 'Asla Paylaşılamayacaklar Çizgisi',
+          text: 'Banyo ve tuvalet rutinleri, duygusal çöküntü ve ağlama, hastalık anları, üstsüzlük… "Organik aile içeriği" maskesiyle bile sunulsa, fıkhî maslahat dairesine giremez.' },
+    9:  { tag: 'Sahne 09 · Rıza Yanılsaması', title: '"Çocuk Kendisi İstiyor!" Argümanı',
+          text: 'Kâsânî\'ye göre küçüğün rızası fıkhen bağlayıcı bir irade değildir. Sevgi için kameraya verilen "rıza" görüntüsü, haksız kazanç döngüsünü aklamaz.' },
+    10: { tag: 'Sahne 10 · Kabîh Hükmü',      title: 'Ebû Hanîfe: Yetişkinin Zedelenen Haysiyeti',
+          text: '"Eğer o tefakkuh edip kadılıkla görevlendirilirse, babasının yaptığı icâre sebebiyle onu insanlara hizmet eder hâlde bırakacak mıyım? Bu kabîhtir."' },
+    11: { tag: 'Sahne 11 · İleriye Dönük',    title: 'Ne Zaman Caiz Olabilir? Beş Şart',
+          text: 'Fona aktarım, mahremiyet kalkanı, te\'dib ve pedagoji, gelecek iradesi taahhüdü, ahlâkî niyet — beşi birden sağlandığında çerçeve meşrulaşır.' },
+  };
+
+  function setActive(scene) {
+    frames.forEach(f => f.classList.toggle('active', +f.dataset.scene === scene));
+    if (chapter) {
+      chapter.textContent = `${String(scene).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+    }
+    if (progress) {
+      const pct = ((scene - 1) / (total - 1)) * 100;
+      progress.style.width = pct + '%';
+    }
+    if (caption && scenes[scene]) {
+      caption.classList.add('fading');
+      setTimeout(() => {
+        const tagEl   = caption.querySelector('.cinema-caption-tag');
+        const titleEl = caption.querySelector('.cinema-caption-title');
+        const textEl  = caption.querySelector('.cinema-caption-text');
+        if (tagEl)   tagEl.textContent   = scenes[scene].tag;
+        if (titleEl) titleEl.textContent = scenes[scene].title;
+        if (textEl)  textEl.textContent  = scenes[scene].text;
+        caption.classList.remove('fading');
+      }, 180);
+    }
+    if (stageEl) stageEl.dataset.sceneActive = 'true';
+  }
+
+  // İlk sahne ile başlat
+  setActive(1);
+
+  // Mobilde (sticky devre dışı), observer'ı atla
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  if (isMobile) return;
+
+  // Sentinellerin viewport'a ortasından geçişine göre aktif sahneyi belirle
+  const observer = new IntersectionObserver(
+    entries => {
+      // En çok kesişen ve görünür olan sentineli seç
+      let best = null;
+      let bestRatio = 0;
+      entries.forEach(e => {
+        if (e.isIntersecting && e.intersectionRatio > bestRatio) {
+          best = e.target;
+          bestRatio = e.intersectionRatio;
+        }
+      });
+      if (best) {
+        const scene = +best.dataset.scene;
+        if (scene && scenes[scene]) setActive(scene);
+      }
+    },
+    {
+      // Sentinel viewport'un orta %20'siyle kesiştiğinde tetiklensin
+      rootMargin: '-40% 0px -40% 0px',
+      threshold: [0, 0.25, 0.5, 0.75, 1]
+    }
+  );
+  sentinels.forEach(s => observer.observe(s));
+})();
+
+/* ================================================
    YAŞA GÖRE REHBER — Accordion
    ================================================ */
 document.querySelectorAll('.yas-btn').forEach(btn => {

@@ -2,3 +2,7 @@
 *.docx
 .DS_Store
 Thumbs.db
+.claude/
+_qa/
+_pdf_imgs/
+unnamed.jpg
