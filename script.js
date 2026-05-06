@@ -720,6 +720,31 @@ maddeCheckboxes.forEach(cb => {
 })();
 
 /* ================================================
+   YOUTUBE FACADE — privacy-first lazy embed
+   Ziyaretçi tıklamadan YouTube'a hiçbir istek gitmez.
+   Tıklandığında youtube-nocookie.com (gelişmiş gizlilik) yüklenir.
+   ================================================ */
+document.querySelectorAll('.yt-facade').forEach(facade => {
+  const trigger = facade.querySelector('.yt-facade-trigger');
+  if (!trigger) return;
+  trigger.addEventListener('click', () => {
+    const id    = facade.dataset.yt;
+    const title = facade.dataset.title || 'YouTube video';
+    if (!id) return;
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
+    iframe.title = title;
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    facade.classList.add('yt-loaded');
+    facade.appendChild(iframe);
+    // Erişilebilirlik: yeni iframe'e odak ver
+    setTimeout(() => iframe.focus(), 100);
+  }, { once: true });
+});
+
+/* ================================================
    YAŞA GÖRE REHBER — Accordion
    ================================================ */
 document.querySelectorAll('.yas-btn').forEach(btn => {
