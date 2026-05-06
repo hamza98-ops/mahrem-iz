@@ -756,6 +756,204 @@ em { font-style: italic; color: var(--gold); }
 .belge-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
 .belge-actions .btn { padding: 10px 22px; font-size: 0.85rem; }
 
+/* ================================================
+   PAYLAŞIM KARTI MODAL — Canvas API
+   ================================================ */
+.share-modal {
+  border: none;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 30px 90px rgba(7,19,42,0.45);
+  padding: 0;
+  max-width: 92vw;
+  width: 540px;
+  max-height: 92vh;
+  overflow: visible;
+  position: fixed;
+  inset: 0;
+  margin: auto;
+}
+.share-modal::backdrop {
+  background: rgba(7,19,42,0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.share-modal-close {
+  position: absolute;
+  top: 14px; right: 16px;
+  background: rgba(255,255,255,0.92);
+  border: none;
+  font-size: 1.6rem;
+  color: var(--navy);
+  cursor: pointer;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  line-height: 1;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.share-modal-body {
+  padding: 24px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.share-modal-tabs {
+  display: flex;
+  gap: 6px;
+  background: var(--cream);
+  border-radius: 50px;
+  padding: 4px;
+  align-self: center;
+}
+.share-tab {
+  border: none;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-light);
+  padding: 8px 18px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.share-tab.active {
+  background: var(--navy);
+  color: var(--white);
+}
+.share-modal-preview {
+  background: linear-gradient(180deg, #f0ebe0 0%, #e4dcc7 100%);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 380px;
+}
+#shareCanvas {
+  max-width: 100%;
+  max-height: 60vh;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(7,19,42,0.25);
+  display: block;
+}
+.share-modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.share-modal-actions .btn { padding: 12px 24px; font-size: 0.9rem; }
+.share-modal-hint {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  text-align: center;
+  font-style: italic;
+  margin: 0;
+}
+
+/* ================================================
+   FIKIH SÖZLÜĞÜ — HTML5 Popover API
+   (Native, sıfır JS bağımlılığı)
+   ================================================ */
+.fikh-term {
+  display: inline;
+  background: transparent;
+  border: none;
+  padding: 0 1px;
+  font: inherit;
+  font-style: italic;
+  color: var(--teal);
+  border-bottom: 1px dotted var(--gold);
+  cursor: help;
+  transition: color 0.2s, background 0.2s;
+}
+.fikh-term:hover,
+.fikh-term:focus-visible {
+  color: var(--gold);
+  background: rgba(201,168,76,0.08);
+  outline: none;
+}
+
+.fikh-popover {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  border: none;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 24px 80px rgba(7,19,42,0.4);
+  padding: 30px 34px 28px;
+  max-width: min(440px, 90vw);
+  width: max-content;
+  height: max-content;
+  border-top: 4px solid var(--gold);
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  /* Popover API'sinin top-layer animasyonu */
+  animation: fikhPopIn 0.22s cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes fikhPopIn {
+  from { opacity: 0; transform: scale(0.94) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.fikh-popover::backdrop {
+  background: rgba(7,19,42,0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: fikhBackdrop 0.22s ease;
+}
+@keyframes fikhBackdrop {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.fikh-popover h5 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--navy);
+  margin: 0 0 6px;
+  line-height: 1.2;
+}
+.fikh-popover-arabic {
+  font-size: 0.85rem;
+  color: var(--gold);
+  font-style: italic;
+  margin-bottom: 16px;
+  letter-spacing: 0.02em;
+}
+.fikh-popover p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin: 0;
+  color: var(--text);
+}
+.fikh-popover p + p { margin-top: 10px; }
+.fikh-popover .fikh-popover-source {
+  display: block;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(15,31,61,0.1);
+  font-size: 0.78rem;
+  color: var(--text-light);
+  font-style: italic;
+}
+.fikh-popover-close {
+  position: absolute;
+  top: 10px; right: 14px;
+  background: transparent;
+  border: none;
+  font-size: 1.6rem;
+  color: var(--text-light);
+  cursor: pointer;
+  padding: 4px 10px;
+  line-height: 1;
+  border-radius: 50%;
+  transition: var(--transition);
+}
+.fikh-popover-close:hover { background: rgba(15,31,61,0.06); color: var(--navy); }
+
 /* Reduced motion: kill cinema transitions */
 @media (prefers-reduced-motion: reduce) {
   .cinema-frame { transition: opacity 0.2s, transform 0s; transform: none !important; }
@@ -764,38 +962,242 @@ em { font-style: italic; color: var(--gold); }
 }
 
 /* ================================================
-   PRINT STYLES — Sözleşme temiz çıktı
+   PRINT STYLES — Aile Sözleşmesi: Ahitname formatı
    ================================================ */
+@page {
+  size: A4 portrait;
+  margin: 14mm 16mm 14mm 16mm;
+}
+
 @media print {
-  /* Her şeyi gizle */
+  /* Sözleşme dışındaki her şeyi sustur */
   .navbar, .hero, .stats-section, .vision-section, .akademi-section,
-  .karne-section, .yas-rehber, .manifesto-block, .hakkimizda-section,
+  .fikhi-section, .karne-section, .yas-rehber, .manifesto-block, .hakkimizda-section,
   .iletisim-section, .kaynakca-section, .footer,
-  .sozlesme-cta, .hero-scroll-hint, .toast { display: none !important; }
+  .sozlesme-cta, .sozlesme-intro, .hero-scroll-hint, .toast,
+  .madde-check, .fikh-popover, .share-modal { display: none !important; }
 
-  body { background: white; font-size: 12pt; }
-  .rehber-section { padding: 0; background: white; }
-  .sozlesme-block { box-shadow: none; padding: 20pt; margin: 0; border-radius: 0; }
+  html, body {
+    background: #ffffff !important;
+    color: #1a1a1a !important;
+    font-family: 'Georgia', 'Cambria', 'Times New Roman', serif !important;
+    font-size: 10.5pt;
+    line-height: 1.45;
+  }
+  * { box-shadow: none !important; text-shadow: none !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
-  /* Baskı başlığı */
-  .sozlesme-block .section-header::before {
-    content: 'Mahrem-İz | Dijital Aile Sözleşmesi — 2025';
-    display: block;
-    font-family: 'Georgia', serif;
-    font-size: 16pt;
-    font-weight: bold;
-    text-align: center;
-    color: #0f1f3d;
-    margin-bottom: 8pt;
-    padding-bottom: 8pt;
-    border-bottom: 1pt solid #c9a84c;
+  /* AOS animasyonlarının başlangıç gizliliğini iptal et — IntersectionObserver print'de tetiklenmez */
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 
-  .madde-item { padding: 10pt; page-break-inside: avoid; }
-  .madde-checkbox + label { border: 1pt solid #333; }
-  .madde-checkbox:checked + label::after { content: '✓'; }
-  .sozlesme-imza { background: white; border: 1pt solid #ccc; }
-  .imza-line { border-bottom: 1pt solid #333; padding-bottom: 6pt; }
+  .rehber-section { padding: 0 !important; background: #ffffff !important; }
+  .rehber-section .container { padding: 0 !important; max-width: 100% !important; }
+
+  /* Sözleşme kabı — klasik kitap kapağı motifi (çift çerçeve) */
+  .sozlesme-block {
+    background: #ffffff !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    border: 1.4pt solid #0f1f3d !important;
+    outline: 0.4pt solid #c9a84c;
+    outline-offset: 4pt;
+    padding: 10mm !important;
+  }
+
+  /* Section-header'ı resmi başlık olarak GÖSTER */
+  .sozlesme-block .section-header {
+    display: block !important;
+    text-align: center !important;
+    margin: 0 0 10pt !important;
+    padding: 0 0 8pt !important;
+    border-bottom: 1pt solid #c9a84c;
+  }
+  .sozlesme-block .section-tag {
+    display: inline-block !important;
+    background: transparent !important;
+    border: none !important;
+    color: #c9a84c !important;
+    font-size: 8pt !important;
+    letter-spacing: 0.25em !important;
+    font-weight: bold !important;
+    padding: 0 !important;
+    margin: 0 0 6pt !important;
+    text-transform: uppercase !important;
+  }
+  .sozlesme-block .section-tag::before { content: '· '; }
+  .sozlesme-block .section-tag::after  { content: ' ·'; }
+  .sozlesme-block .section-header h2 {
+    font-family: 'Georgia', serif !important;
+    font-size: 22pt !important;
+    font-weight: bold !important;
+    letter-spacing: 0.06em !important;
+    color: #0f1f3d !important;
+    margin: 0 !important;
+    line-height: 1.15 !important;
+  }
+  .sozlesme-block .section-header h2 br { display: none !important; }
+  .sozlesme-block .section-header h2 em {
+    font-style: italic !important;
+    color: #c9a84c !important;
+  }
+  .sozlesme-block .section-header h2::after {
+    content: '';
+    display: block;
+    width: 80pt;
+    margin: 6pt auto 0;
+    border-top: 0.5pt solid #c9a84c;
+  }
+  .sozlesme-block .section-desc { display: none !important; }
+
+  /* Mukaddime kısa metin */
+  .sozlesme-block .section-header::after {
+    content: '"Yuvanın duvarları, duvarların ötesine geçmez." — Bu sözleşme, ailenin bir emanet olduğu bilinciyle, dijital çağda mahremiyetin korunması için bireylerin özgür iradesiyle imzaladığı bir ahitnamedir.';
+    display: block;
+    font-style: italic;
+    font-family: 'Georgia', serif;
+    font-size: 9.5pt;
+    color: #555;
+    margin-top: 8pt;
+    padding: 0 16pt;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  /* Madde listesi */
+  .madde-list {
+    display: block !important;
+    flex-direction: unset !important;
+    border: none !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+    margin: 8pt 0 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+  .madde-item {
+    display: grid !important;
+    grid-template-columns: 28pt 1fr !important;
+    gap: 4pt 8pt !important;
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 0.3pt dotted #aaa !important;
+    padding: 6pt 0 !important;
+    margin: 0 !important;
+    page-break-inside: avoid !important;
+    transition: none !important;
+  }
+  .madde-item:last-of-type { border-bottom: none !important; }
+  .madde-num {
+    background: transparent !important;
+    color: #c9a84c !important;
+    opacity: 1 !important;
+    font-family: 'Georgia', serif !important;
+    font-size: 13pt !important;
+    font-weight: bold !important;
+    min-width: auto !important;
+    line-height: 1.1 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .madde-content {
+    flex: none !important;
+    display: block !important;
+  }
+  .madde-content h4 {
+    font-family: 'Georgia', serif !important;
+    font-size: 11pt !important;
+    color: #0f1f3d !important;
+    font-weight: bold !important;
+    margin: 0 0 3pt !important;
+    line-height: 1.25 !important;
+  }
+  .madde-quote {
+    font-style: italic !important;
+    color: #6b5520 !important;
+    border-left: 1.4pt solid #c9a84c !important;
+    padding-left: 7pt !important;
+    margin: 0 0 3pt !important;
+    font-size: 9.5pt !important;
+    font-family: 'Georgia', serif !important;
+  }
+  .madde-content p:not(.madde-quote) {
+    margin: 0 !important;
+    color: #2c2c2c !important;
+    font-size: 9.5pt !important;
+    line-height: 1.45 !important;
+  }
+
+  /* İmza alanı */
+  .sozlesme-imza {
+    margin-top: 12pt !important;
+    padding: 10pt 0 0 !important;
+    background: transparent !important;
+    border: none !important;
+    border-top: 0.8pt solid #0f1f3d !important;
+    page-break-inside: avoid !important;
+  }
+  .sozlesme-imza h4 {
+    text-align: center !important;
+    font-family: 'Georgia', serif !important;
+    font-size: 11pt !important;
+    letter-spacing: 0.25em !important;
+    color: #0f1f3d !important;
+    margin: 0 0 12pt !important;
+    text-transform: uppercase;
+  }
+  .imza-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 14pt 22pt !important;
+    margin: 0 !important;
+  }
+  .imza-line {
+    border: none !important;
+    background: transparent !important;
+    padding: 18pt 0 0 !important;
+    border-bottom: 0.6pt solid #333 !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-end !important;
+    gap: 8pt !important;
+  }
+  .imza-line input {
+    border: none !important;
+    background: transparent !important;
+    flex: 1 !important;
+    font-family: 'Georgia', serif !important;
+    font-size: 10pt !important;
+    padding: 0 !important;
+    width: auto !important;
+  }
+  .imza-line span {
+    font-size: 8pt !important;
+    color: #555 !important;
+    letter-spacing: 0.04em !important;
+    white-space: nowrap !important;
+  }
+
+  /* Alt şerit: kaynak + URL */
+  .sozlesme-imza::after {
+    content: '"İnsanların gizliliklerini araştırmayın."  ·  Hucurât 49:12     ·     mahremiz.com.tr  ·  Sosyalfest 2026';
+    display: block;
+    text-align: center;
+    font-size: 8pt;
+    color: #888;
+    letter-spacing: 0.06em;
+    margin-top: 14pt;
+    padding-top: 6pt;
+    border-top: 0.3pt dotted #c9a84c;
+    font-style: italic;
+    font-family: 'Georgia', serif;
+  }
+
+  /* Link altlarını sustur */
+  a[href]:after { content: '' !important; }
 }
 
 /* ================================================
@@ -853,6 +1255,8 @@ em { font-style: italic; color: var(--gold); }
   .belge-thumb   { flex: none; aspect-ratio: 16/9; }
   .belge-body    { padding: 24px 22px; }
 
+  /* Mobil: scroll-snap ile her sahne ekrana "şak" diye otursun (doomscrolling tersine çevrilmiş) */
+  html { scroll-snap-type: y mandatory; scroll-padding-top: 70px; }
   .cinema { background: var(--navy-deep); padding: 0 18px 60px; }
   .cinema-stage {
     position: static;
@@ -860,6 +1264,10 @@ em { font-style: italic; color: var(--gold); }
     background: transparent;
     display: block;
     padding: 24px 0;
+  }
+  .cinema-frame {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
   }
   .cinema-stage::before { display: none; }
   .cinema-progress, .cinema-hint, .cinema-chapter, .cinema-caption { display: none; }
