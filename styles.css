@@ -396,8 +396,56 @@ em { font-style: italic; color: var(--gold-text); }
 .karne-card { background: var(--cream); border-radius: var(--radius-lg); padding: 36px; border: 2px solid transparent; transition: var(--transition); }
 .karne-card:hover { border-color: rgba(201,168,76,0.3); box-shadow: var(--shadow-sm); }
 .karne-card.rated { background: rgba(201,168,76,0.05); border-color: rgba(201,168,76,0.4); }
-.karne-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.karne-card-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
 .karne-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--gold); opacity: 0.5; line-height: 1; }
+.karne-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; flex: 1; min-width: 0; }
+.karne-weight {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-text);
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.3);
+  padding: 2px 9px;
+  border-radius: 50px;
+}
+.karne-redline {
+  display: inline-block;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #c0392b;
+  background: rgba(231,76,60,0.1);
+  border: 1px solid rgba(231,76,60,0.3);
+  padding: 2px 9px;
+  border-radius: 50px;
+}
+.karne-card--redline {
+  border-left: 3px solid rgba(231,76,60,0.4);
+}
+.karne-card--redline.rated { border-left-color: rgba(231,76,60,0.7); }
+
+/* Sonuç paneli — kırmızı çizgi uyarı kutusu */
+.result-redline {
+  background: rgba(231,76,60,0.15);
+  border: 1px solid rgba(231,76,60,0.35);
+  border-radius: var(--radius);
+  padding: 12px 18px;
+  margin: 0 auto 22px;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.92);
+  max-width: 580px;
+  text-align: left;
+}
+.result-redline strong { color: #ff8a80; }
+.result-redline[hidden] { display: none; }
+
+/* Turuncu trafik ışığı (Etik Karne'de eksikti) */
+.result-traffic.orange { background: #e67e22; box-shadow: 0 0 20px rgba(230,126,34,0.5); }
 
 /* Erişilebilir Radio Yıldız Puanlama */
 .karne-stars {
