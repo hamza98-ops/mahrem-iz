@@ -626,6 +626,190 @@ em { font-style: italic; color: var(--gold-text); }
 .form-notice em { color: var(--gold-light); font-style: italic; }
 
 /* ================================================
+   PAYLAŞMADAN ÖNCE 10 SANİYE TESTİ — Faz 2 amiral aracı
+   ================================================ */
+.paylasim-section {
+  padding: 100px 0 110px;
+  background: linear-gradient(180deg, var(--cream-dark) 0%, var(--cream) 100%);
+  border-top: 1px solid rgba(15,31,61,0.06);
+  border-bottom: 1px solid rgba(15,31,61,0.06);
+}
+.paylasim-list {
+  list-style: none;
+  margin: 48px auto 0;
+  padding: 0;
+  max-width: 880px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.paylasim-q {
+  display: flex;
+  gap: 22px;
+  background: var(--white);
+  border: 1px solid rgba(15,31,61,0.07);
+  border-left: 3px solid rgba(201,168,76,0.25);
+  border-radius: var(--radius);
+  padding: 22px 26px;
+  transition: var(--transition);
+  align-items: flex-start;
+}
+.paylasim-q:hover { border-color: rgba(15,31,61,0.14); border-left-color: var(--gold); }
+.paylasim-q.answered { border-left-color: var(--green); background: #fdfcf7; }
+.paylasim-q.answered.answered-yes { border-left-color: var(--yellow); }
+.paylasim-q--redline.answered.answered-yes { border-left-color: var(--red); background: #fdf6f5; }
+
+.paylasim-q-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--gold);
+  opacity: 0.4;
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 38px;
+  padding-top: 4px;
+}
+.paylasim-q.answered .paylasim-q-num { opacity: 0.65; color: var(--gold-text); }
+.paylasim-q-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.paylasim-q-text {
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: var(--text);
+  margin: 0;
+}
+.paylasim-q-text strong { color: var(--navy); font-weight: 600; }
+.paylasim-q-hint {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.82rem;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+/* Segmented yes/no kontrol */
+.paylasim-yn {
+  display: inline-flex;
+  border: 1px solid rgba(15,31,61,0.15);
+  border-radius: 50px;
+  padding: 3px;
+  background: var(--cream);
+  align-self: flex-start;
+}
+.yn-input {
+  position: absolute;
+  opacity: 0;
+  width: 0; height: 0;
+  pointer-events: none;
+}
+.yn-label {
+  display: inline-block;
+  padding: 8px 22px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text-light);
+  transition: var(--transition);
+  user-select: none;
+  min-width: 78px;
+  text-align: center;
+}
+.yn-label:hover { color: var(--navy); background: rgba(15,31,61,0.04); }
+.yn-input:focus-visible + .yn-label {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+.yn-input[value="no"]:checked + .yn-label  { background: var(--green); color: var(--white); box-shadow: 0 2px 8px rgba(39,174,96,0.25); }
+.yn-input[value="yes"]:checked + .yn-label { background: var(--gold); color: var(--navy-deep); box-shadow: 0 2px 8px rgba(201,168,76,0.3); }
+.paylasim-q--redline .yn-input[value="yes"]:checked + .yn-label { background: var(--red); color: var(--white); box-shadow: 0 2px 8px rgba(231,76,60,0.3); }
+
+/* Sonuç paneli */
+.paylasim-result {
+  margin: 48px auto 0;
+  max-width: 760px;
+  padding: 40px 44px;
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  position: relative;
+}
+.paylasim-result[hidden] { display: none; }
+.paylasim-traffic {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  margin: 0 auto 22px;
+  background: rgba(255,255,255,0.15);
+  transition: var(--transition);
+}
+.paylasim-traffic.green   { background: var(--green);  box-shadow: 0 0 32px rgba(39,174,96,0.5); }
+.paylasim-traffic.yellow  { background: var(--yellow); box-shadow: 0 0 32px rgba(243,156,18,0.5); }
+.paylasim-traffic.orange  { background: #e67e22;       box-shadow: 0 0 32px rgba(230,126,34,0.5); }
+.paylasim-traffic.red     { background: var(--red);    box-shadow: 0 0 32px rgba(231,76,60,0.5); }
+
+.paylasim-verdict {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--white);
+}
+.paylasim-action {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.85);
+  max-width: 580px;
+  margin: 0 auto 18px;
+}
+.paylasim-action strong { color: var(--gold-light); font-weight: 600; }
+.paylasim-redline {
+  background: rgba(231,76,60,0.18);
+  border: 1px solid rgba(231,76,60,0.4);
+  border-radius: var(--radius);
+  padding: 12px 18px;
+  margin: 0 auto 22px;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.92);
+  max-width: 580px;
+  text-align: left;
+}
+.paylasim-redline strong { color: #ff8a80; }
+.paylasim-redline[hidden] { display: none; }
+.paylasim-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.paylasim-actions #paylasimReset {
+  background: rgba(255,255,255,0.12);
+  border: 2px solid rgba(255,255,255,0.3);
+  color: var(--white);
+}
+.paylasim-actions #paylasimReset:hover { background: rgba(255,255,255,0.2); }
+.paylasim-actions a.btn {
+  background: var(--gold);
+  color: var(--navy-deep);
+  border-color: var(--gold);
+}
+.paylasim-actions a.btn:hover { background: var(--gold-light); border-color: var(--gold-light); }
+
+@media (max-width: 600px) {
+  .paylasim-q { gap: 14px; padding: 18px 18px; }
+  .paylasim-q-num { font-size: 1.3rem; min-width: 28px; }
+  .yn-label { min-width: 64px; padding: 7px 16px; }
+  .paylasim-result { padding: 32px 22px; }
+}
+
+/* ================================================
    KVKK / AYDINLATMA SAYFASI (kvkk.html)
    ================================================ */
 .doc-header {

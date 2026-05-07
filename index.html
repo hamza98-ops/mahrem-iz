@@ -107,13 +107,13 @@
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks" role="list">
-        <li><a href="#anasayfa"   class="nav-link">Başla</a></li>
-        <li><a href="#karne"      class="nav-link">Araçlar</a></li>
-        <li><a href="#rehber"     class="nav-link">Rehber</a></li>
-        <li><a href="#akademi"    class="nav-link">Akademi</a></li>
-        <li><a href="#fikhi"      class="nav-link">Belgeler</a></li>
-        <li><a href="#hakkimizda" class="nav-link">Hakkımızda</a></li>
-        <li><a href="#karne"      class="nav-btn" aria-label="Etik Karne — interaktif değerlendirme aracını aç">Etik Karne</a></li>
+        <li><a href="#anasayfa"        class="nav-link">Başla</a></li>
+        <li><a href="#paylasim-testi"  class="nav-link">Araçlar</a></li>
+        <li><a href="#rehber"          class="nav-link">Rehber</a></li>
+        <li><a href="#akademi"         class="nav-link">Akademi</a></li>
+        <li><a href="#fikhi"           class="nav-link">Belgeler</a></li>
+        <li><a href="#hakkimizda"      class="nav-link">Hakkımızda</a></li>
+        <li><a href="#paylasim-testi"  class="nav-btn" aria-label="Paylaşmadan Önce 10 Saniye Testi'ni başlat">Paylaşım Testi</a></li>
       </ul>
     </div>
   </nav>
@@ -139,13 +139,173 @@
           paylaşmadan önce bir kez durmak için tasarlanmış bir karar rehberidir.
         </p>
         <div class="hero-buttons">
-          <a href="#karne"  class="btn btn-primary">Etik Karne'yi Doldur</a>
-          <a href="#rehber" class="btn btn-outline">Aile Sözleşmesini İndir</a>
+          <a href="#paylasim-testi" class="btn btn-primary">Paylaşmadan Önce Test Et</a>
+          <a href="#karne"  class="btn btn-outline">Etik Karne'yi Doldur</a>
+          <a href="#rehber" class="btn btn-outline">Aile Sözleşmesi</a>
         </div>
       </div>
       <div class="hero-scroll-hint" aria-hidden="true">
         <span>Aşağı Kaydır</span>
         <div class="scroll-arrow"></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PAYLAŞMADAN ÖNCE 10 SANİYE TESTİ — Faz 2 amiral aracı -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="paylasim-section" id="paylasim-testi">
+      <div class="container">
+        <div class="section-header center">
+          <div class="section-tag">İnteraktif Araç · 10 Saniye</div>
+          <h2>Paylaşmadan Önce<br /><em>10 Saniye Testi</em></h2>
+          <p class="section-desc">
+            Bu fotoğraf veya video paylaşılmalı mı? Yedi soruda 10 saniyede
+            bir ölçü, bir eylem önerisi.
+          </p>
+          <p class="fetva-not" role="note" style="margin-top:18px">
+            <strong>Not:</strong> Bu test bireysel fetva veya hukuki danışmanlık
+            yerine geçmez. Mahrem-İz, paylaşım kararını size bırakır;
+            <em>refakat eder, karar vermez</em>.
+          </p>
+        </div>
+
+        <ol class="paylasim-list" id="paylasimList" role="list">
+
+          <li class="paylasim-q" data-q="1">
+            <div class="paylasim-q-num" aria-hidden="true">01</div>
+            <div class="paylasim-q-body">
+              <p class="paylasim-q-text">
+                Bu paylaşım <strong>çocuğunuzun yüzünü, okulunu, konumunu veya
+                günlük rutinini</strong> ortaya çıkarıyor mu?
+              </p>
+              <fieldset class="paylasim-yn">
+                <legend class="sr-only">Soru 1 cevabı</legend>
+                <input type="radio" name="paylasim-1" id="p1-no"  value="no"  class="yn-input" />
+                <label for="p1-no" class="yn-label">Hayır</label>
+                <input type="radio" name="paylasim-1" id="p1-yes" value="yes" class="yn-input" />
+                <label for="p1-yes" class="yn-label">Evet</label>
+              </fieldset>
+            </div>
+          </li>
+
+          <li class="paylasim-q" data-q="2">
+            <div class="paylasim-q-num" aria-hidden="true">02</div>
+            <div class="paylasim-q-body">
+              <p class="paylasim-q-text">
+                Çocuğunuz büyüdüğünde bu içeriğin internette kalmasından
+                <strong>rahatsız olabileceğini</strong> düşünüyor musunuz?
+              </p>
+              <fieldset class="paylasim-yn">
+                <legend class="sr-only">Soru 2 cevabı</legend>
+                <input type="radio" name="paylasim-2" id="p2-no"  value="no"  class="yn-input" />
+                <label for="p2-no" class="yn-label">Hayır</label>
+                <input type="radio" name="paylasim-2" id="p2-yes" value="yes" class="yn-input" />
+                <label for="p2-yes" class="yn-label">Evet</label>
+              </fieldset>
+            </div>
+          </li>
+
+          <li class="paylasim-q paylasim-q--redline" data-q="3" data-redline="true">
+            <div class="paylasim-q-num" aria-hidden="true">03</div>
+            <div class="paylasim-q-body">
+              <p class="paylasim-q-text">
+                Paylaşım çocuğun <strong>mahrem bir hâlini</strong> gösteriyor mu?
+                <span class="paylasim-q-hint">(ağlama, hastalık, ceza, korku, banyo, tuvalet)</span>
+              </p>
+              <fieldset class="paylasim-yn">
+                <legend class="sr-only">Soru 3 cevabı</legend>
+                <input type="radio" name="paylasim-3" id="p3-no"  value="no"  class="yn-input" />
+                <label for="p3-no" class="yn-label">Hayır</label>
+                <input type="radio" name="paylasim-3" id="p3-yes" value="yes" class="yn-input" />
+                <label for="p3-yes" class="yn-label">Evet</label>
+              </fieldset>
+            </div>
+          </li>
+
+          <li class="paylasim-q" data-q="4">
+            <div class="paylasim-q-num" aria-hidden="true">04</div>
+            <div class="paylasim-q-body">
+              <p class="paylasim-q-text">
+                Bu içerik <strong>aile içi özel bir anı</strong> (kavga, gerilim,
+                duygusal tepki) kamusal alana taşıyor mu?
+              </p>
+              <fieldset class="paylasim-yn">
+                <legend class="sr-only">Soru 4 cevabı</legend>
+                <input type="radio" name="paylasim-4" id="p4-no"  value="no"  class="yn-input" />
+                <label for="p4-no" class="yn-label">Hayır</label>
+                <input type="radio" name="paylasim-4" id="p4-yes" value="yes" class="yn-input" />
+                <label for="p4-yes" class="yn-label">Evet</label>
+              </fieldset>
+            </div>
+          </li>
+
+          <li class="paylasim-q" data-q="5">
+            <div class="paylasim-q-num" aria-hidden="true">05</div>
+            <div class="paylasim-q-body">
+              <p class="paylasim-q-text">
+                Bu paylaşımı yapmamın <strong>asıl nedeni başkalarının onayı,
+                beğenisi veya alkışı</strong> mı?
+              </p>
+              <fieldset class="paylasim-yn">
+                <legend class="sr-only">Soru 5 cevabı</legend>
+                <input type="radio" name="paylasim-5" id="p5-no"  value="no"  class="yn-input" />
+                <label for="p5-no" class="yn-label">Hayır</label>
+                <input type="radio" name="paylasim-5" id="p5-yes" value="yes" class="yn-input" />
+                <label for="p5-yes" class="yn-label">Evet</label>
+              </fieldset>
+            </div>
+          </li>
+
+          <li class="paylasim-q" data-q="6">
+            <div class="paylasim-q-num" aria-hidden="true">06</div>
+            <div class="paylasim-q-body">
+              <p class="paylasim-q-text">
+                Bu içerik <strong>reklam, sponsorluk, takipçi kazanımı veya gelir</strong>
+                ile ilişkili mi?
+              </p>
+              <fieldset class="paylasim-yn">
+                <legend class="sr-only">Soru 6 cevabı</legend>
+                <input type="radio" name="paylasim-6" id="p6-no"  value="no"  class="yn-input" />
+                <label for="p6-no" class="yn-label">Hayır</label>
+                <input type="radio" name="paylasim-6" id="p6-yes" value="yes" class="yn-input" />
+                <label for="p6-yes" class="yn-label">Evet</label>
+              </fieldset>
+            </div>
+          </li>
+
+          <li class="paylasim-q paylasim-q--redline" data-q="7" data-redline="true">
+            <div class="paylasim-q-num" aria-hidden="true">07</div>
+            <div class="paylasim-q-body">
+              <p class="paylasim-q-text">
+                Silinse bile <strong>ekran görüntüsü alınmış olması</strong>
+                sizi rahatsız eder mi?
+              </p>
+              <fieldset class="paylasim-yn">
+                <legend class="sr-only">Soru 7 cevabı</legend>
+                <input type="radio" name="paylasim-7" id="p7-no"  value="no"  class="yn-input" />
+                <label for="p7-no" class="yn-label">Hayır</label>
+                <input type="radio" name="paylasim-7" id="p7-yes" value="yes" class="yn-input" />
+                <label for="p7-yes" class="yn-label">Evet</label>
+              </fieldset>
+            </div>
+          </li>
+
+        </ol>
+
+        <!-- SONUÇ PANELİ -->
+        <div class="paylasim-result" id="paylasimResult" aria-live="polite" hidden>
+          <div class="paylasim-traffic" id="paylasimTraffic" aria-hidden="true"></div>
+          <div class="paylasim-verdict" id="paylasimVerdict">YEŞİL · Paylaşılabilir</div>
+          <p class="paylasim-action" id="paylasimAction"></p>
+          <p class="paylasim-redline" id="paylasimRedline" hidden>
+            <strong>⚠ Kırmızı çizgi tetiklendi:</strong> <span id="paylasimRedlineReason"></span>
+          </p>
+          <div class="paylasim-actions">
+            <button class="btn btn-secondary" id="paylasimReset" type="button">Yeniden Başla</button>
+            <a href="#karne" class="btn">Etik Karne'ye Geç</a>
+          </div>
+        </div>
+
       </div>
     </div>
 

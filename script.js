@@ -760,3 +760,106 @@ document.querySelectorAll('.yas-btn').forEach(btn => {
     }
   });
 });
+
+/* ================================================
+   PAYLAŞMADAN ÖNCE 10 SANİYE TESTİ — Faz 2 amiral aracı
+   7 soru · 4 sonuç (yeşil/sarı/turuncu/kırmızı) · kırmızı çizgi mantığı
+   Skor: her "Evet" = 1 puan. Soru 3 veya 7 "Evet" → otomatik kırmızı.
+   ================================================ */
+(function initPaylasimTesti() {
+  const list = document.getElementById('paylasimList');
+  if (!list) return;
+
+  const result        = document.getElementById('paylasimResult');
+  const traffic       = document.getElementById('paylasimTraffic');
+  const verdictEl     = document.getElementById('paylasimVerdict');
+  const actionEl      = document.getElementById('paylasimAction');
+  const redlineEl     = document.getElementById('paylasimRedline');
+  const redlineReason = document.getElementById('paylasimRedlineReason');
+  const resetBtn      = document.getElementById('paylasimReset');
+
+  const answers = { 1: null, 2: null, 3: null, 4: null, 5: null, 6: null, 7: null };
+
+  const verdicts = {
+    green:  { label: 'YEŞİL · Paylaşabilirsiniz',
+              text:  'Bu paylaşım <strong>düşük risk</strong> taşıyor. Yine de konum ve günlük rutin bilgisi içermediğinden emin olun; yüksek görünürlük gerektiren paylaşımları ailecek değerlendirin.' },
+    yellow: { label: 'SARI · Düzenleyerek paylaşın',
+              text:  'Bu paylaşımı <strong>düzenleyerek</strong> paylaşmayı düşünün: yüzü emoji veya bulanıklaştırarak kapatın, konum bilgisini çıkarın, ya da yalnızca özel ve sınırlı çevreye paylaşın.' },
+    orange: { label: 'TURUNCU · Şimdilik ertelenmeli',
+              text:  'Bu paylaşımı <strong>en az 24 saat erteleyin</strong>, sonra bağlamı yeniden değerlendirin. Çocuğunuzun yaşı uygunsa rızasını sorun; yararı zarara baskın geliyor mu birlikte düşünün.' },
+    red:    { label: 'KIRMIZI · Paylaşılmamalı',
+              text:  'Bu içerik <strong>yüksek risk</strong> taşıyor. Çocuğun mahremiyeti ve geleceği için kamuya açık paylaşmayın. Yalnızca güvendiğiniz aile sohbetinde (kapalı, sınırlı grup) paylaşmayı düşünebilirsiniz.' }
+  };
+
+  const redlineMessages = {
+    3: 'Soru 3 — çocuğun mahrem hâli (ağlama, hastalık, korku, ceza, banyo, tuvalet) kamuya açık paylaşılmamalı.',
+    7: 'Soru 7 — kendiniz rahatsızlık duyuyorsanız, içerik zaten hassas demektir.'
+  };
+
+  function compute() {
+    const allAnswered = Object.values(answers).every(a => a !== null);
+    if (!allAnswered) return null;
+
+    const yesCount = Object.values(answers).filter(a => a === 'yes').length;
+    const tripped = [];
+    if (answers[3] === 'yes') tripped.push(3);
+    if (answers[7] === 'yes') tripped.push(7);
+
+    let level;
+    if (tripped.length > 0 || yesCount >= 6) level = 'red';
+    else if (yesCount >= 4) level = 'orange';
+    else if (yesCount >= 2) level = 'yellow';
+    else level = 'green';
+
+    return { level, tripped };
+  }
+
+  function render() {
+    const r = compute();
+    if (!r) { result.hidden = true; return; }
+
+    const v = verdicts[r.level];
+    result.hidden = false;
+    traffic.className = 'paylasim-traffic ' + r.level;
+    verdictEl.textContent = v.label;
+    actionEl.innerHTML = v.text;
+
+    if (r.tripped.length > 0) {
+      redlineReason.textContent = r.tripped.map(q => redlineMessages[q]).join(' ');
+      redlineEl.hidden = false;
+    } else {
+      redlineEl.hidden = true;
+    }
+
+    // Sonuç ilk göründüğünde sayfayı paneline kaydır
+    if (!result.dataset.shown) {
+      result.dataset.shown = '1';
+      setTimeout(() => result.scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
+    }
+  }
+
+  list.querySelectorAll('.yn-input').forEach(input => {
+    input.addEventListener('change', e => {
+      const q = e.target.name.replace('paylasim-', '');
+      answers[q] = e.target.value;
+
+      const li = e.target.closest('.paylasim-q');
+      li.classList.add('answered');
+      li.classList.toggle('answered-yes', e.target.value === 'yes');
+      li.classList.toggle('answered-no',  e.target.value === 'no');
+
+      render();
+    });
+  });
+
+  resetBtn.addEventListener('click', () => {
+    Object.keys(answers).forEach(k => answers[k] = null);
+    list.querySelectorAll('.yn-input').forEach(i => i.checked = false);
+    list.querySelectorAll('.paylasim-q').forEach(li => {
+      li.classList.remove('answered', 'answered-yes', 'answered-no');
+    });
+    result.hidden = true;
+    delete result.dataset.shown;
+    list.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+})();
