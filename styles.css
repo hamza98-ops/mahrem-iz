@@ -279,6 +279,19 @@ em { font-style: italic; color: var(--gold); }
   border: 0;
 }
 
+/* Portrait varyant — Şarkı (Shorts 9:16). Kapak kare, yüklenince player 9:16. */
+.yt-facade--portrait { max-width: 460px; }
+.yt-facade--portrait .yt-facade-trigger { aspect-ratio: 1 / 1; }
+.yt-facade--portrait.yt-loaded { aspect-ratio: 9 / 16; max-width: 360px; }
+.yt-facade--portrait iframe { aspect-ratio: 9 / 16; }
+
+/* Şarkı bölümü — Tanıtım'la aynı yapı, hafifçe farklı arka plan tonu */
+.sarki-section {
+  background: linear-gradient(180deg, #f5efe1 0%, #efe6d2 100%);
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
 /* ================================================
    STATS SECTION
    ================================================ */
