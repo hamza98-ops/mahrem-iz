@@ -1385,6 +1385,123 @@ em { font-style: italic; color: var(--gold-text); }
 .trust-update a { color: var(--teal); text-decoration: underline; text-decoration-style: dotted; }
 
 /* ================================================
+   İÇERİK ÜRETİCİ 8 İLKESİ (#ilkeler)
+   ================================================ */
+.ilkeler-section {
+  padding: 100px 0 110px;
+  background: linear-gradient(180deg, var(--cream) 0%, var(--white) 60%);
+  border-top: 1px solid rgba(15,31,61,0.06);
+}
+.ilke-grid {
+  list-style: none;
+  margin: 48px auto 0;
+  padding: 0;
+  max-width: 1180px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 18px;
+  counter-reset: ilke;
+}
+.ilke-card {
+  background: var(--white);
+  border: 1px solid rgba(15,31,61,0.07);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 24px 26px 22px;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+.ilke-card:hover { box-shadow: var(--shadow-sm); transform: translateX(2px); }
+.ilke-card--strong {
+  border-left-color: #c0392b;
+  background: #fef9f7;
+}
+.ilke-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold);
+  opacity: 0.55;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+.ilke-card--strong .ilke-num { color: #c0392b; opacity: 0.7; }
+.ilke-card h3 {
+  font-size: 1.05rem;
+  line-height: 1.35;
+  color: var(--navy);
+  margin: 0 0 10px;
+  font-weight: 600;
+}
+.ilke-card p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 0;
+  flex: 1;
+}
+.ilke-card p strong { color: var(--navy); font-weight: 600; }
+.ilke-card p em { color: var(--gold-text); font-style: italic; }
+.ilke-card--strong p em { color: #c0392b; }
+
+/* Pledge bloğu */
+.ilkeler-pledge {
+  margin: 56px auto 0;
+  max-width: 760px;
+  padding: 36px 36px 28px;
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+.ilkeler-pledge p {
+  color: rgba(255,255,255,0.85);
+  font-size: 0.98rem;
+  line-height: 1.7;
+  margin: 0 0 16px;
+}
+.ilkeler-pledge p strong { color: var(--gold-light); font-weight: 600; }
+
+.ilkeler-pledge-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.55;
+  color: var(--white);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(232,199,106,0.3);
+  border-radius: var(--radius);
+  padding: 22px 28px;
+  margin: 0 auto 22px;
+  max-width: 600px;
+}
+.ilkeler-pledge-url {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.86rem;
+  color: var(--gold-light);
+  font-style: normal;
+  letter-spacing: 0.04em;
+}
+
+.ilkeler-disclaimer {
+  font-size: 0.84rem !important;
+  color: rgba(255,255,255,0.7) !important;
+  line-height: 1.6 !important;
+  text-align: left;
+  background: rgba(255,255,255,0.04);
+  border-left: 2px solid rgba(232,199,106,0.4);
+  padding: 12px 16px !important;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  max-width: 580px;
+  margin: 0 auto !important;
+}
+.ilkeler-disclaimer strong { color: var(--gold-light) !important; }
+.ilkeler-disclaimer em { color: rgba(255,255,255,0.85) !important; font-style: italic; }
+
+/* ================================================
    ANKET — ANA SAYFA "TOPLUMSAL AYNA" (#anket)
    ================================================ */
 .anket-section {
