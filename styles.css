@@ -12,6 +12,7 @@
   --teal-light: #2e86ab;
   --gold:       #c9a84c;
   --gold-light: #e8c76a;
+  --gold-text:  #8c6b1f; /* normal text on cream/white — WCAG AA (4.63:1) */
   --cream:      #faf7f0;
   --cream-dark: #f0ebe0;
   --text:       #2c3e50;
@@ -62,7 +63,7 @@ h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 700; }
 h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 600; }
 h3 { font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 600; }
 h4 { font-size: 1.1rem; font-weight: 600; }
-em { font-style: italic; color: var(--gold); }
+em { font-style: italic; color: var(--gold-text); }
 
 /* ================================================
    BUTTONS
@@ -102,7 +103,7 @@ em { font-style: italic; color: var(--gold); }
   background: rgba(201,168,76,0.12);
   border: 1px solid rgba(201,168,76,0.4);
   border-radius: 50px;
-  color: var(--gold);
+  color: var(--gold-text);
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -304,13 +305,13 @@ em { font-style: italic; color: var(--gold); }
 .stat-number { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; color: var(--navy); line-height: 1; margin-bottom: 8px; }
 .stat-card.featured .stat-number { color: var(--gold); }
 .stat-label { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 20px; }
-.stat-card.featured .stat-label { color: var(--gold); }
+.stat-card.featured .stat-label { color: var(--gold-text); }
 .stat-divider { height: 1px; background: var(--cream-dark); margin-bottom: 20px; }
 .stat-text { color: var(--text); margin-bottom: 14px; font-size: 0.95rem; }
 .stat-note { font-style: italic; color: var(--text-light); font-size: 0.88rem; border-left: 2px solid var(--gold); padding-left: 12px; margin-bottom: 14px; }
 .stat-source { font-size: 0.78rem; color: var(--text-light); }
 .stat-source a { color: var(--teal); text-decoration: underline; text-decoration-style: dotted; }
-.stat-source a:hover { color: var(--gold); }
+.stat-source a:hover { color: var(--gold-text); }
 .stats-cta { text-align: center; }
 
 /* ================================================
@@ -330,13 +331,13 @@ em { font-style: italic; color: var(--gold); }
 .vision-card.solution .vision-icon { color: var(--gold-light); }
 .vision-icon svg { width: 100%; height: 100%; }
 .vision-tag { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); }
-.vision-card.sociologic .vision-tag { color: var(--gold); }
+.vision-card.sociologic .vision-tag { color: var(--gold-text); }
 .vision-card.solution .vision-tag { color: var(--gold-light); }
 .vision-card h3 { margin-bottom: 4px; }
 .vision-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.9rem; border-left: 3px solid var(--gold); padding: 10px 16px; background: rgba(201,168,76,0.08); border-radius: 0 8px 8px 0; color: var(--text); }
 .vision-card.solution .vision-quote { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.8); }
 .vision-link { margin-top: auto; font-weight: 600; font-size: 0.9rem; color: var(--teal); display: inline-flex; align-items: center; gap: 6px; transition: var(--transition); }
-.vision-card.sociologic .vision-link { color: var(--gold); }
+.vision-card.sociologic .vision-link { color: var(--gold-text); }
 .vision-card.solution .vision-link { color: var(--gold-light); }
 .vision-link:hover { gap: 10px; }
 
@@ -863,7 +864,7 @@ em { font-style: italic; color: var(--gold); }
 .belge-body { flex: 1; padding: 28px 30px; display: flex; flex-direction: column; gap: 10px; }
 .belge-tag {
   font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--gold);
+  text-transform: uppercase; color: var(--gold-text);
 }
 .belge-body h4 { font-size: 1.2rem; line-height: 1.35; color: var(--navy); }
 .belge-body p { color: var(--text-light); font-size: 0.92rem; flex: 1; }
@@ -986,7 +987,7 @@ em { font-style: italic; color: var(--gold); }
 }
 .fikh-term:hover,
 .fikh-term:focus-visible {
-  color: var(--gold);
+  color: var(--gold-text);
   background: rgba(201,168,76,0.08);
   outline: none;
 }
@@ -1032,7 +1033,7 @@ em { font-style: italic; color: var(--gold); }
 }
 .fikh-popover-arabic {
   font-size: 0.85rem;
-  color: var(--gold);
+  color: var(--gold-text);
   font-style: italic;
   margin-bottom: 16px;
   letter-spacing: 0.02em;
@@ -1068,11 +1069,28 @@ em { font-style: italic; color: var(--gold); }
 }
 .fikh-popover-close:hover { background: rgba(15,31,61,0.06); color: var(--navy); }
 
-/* Reduced motion: kill cinema transitions */
+/* Reduced motion: WCAG 2.2 — istemsiz hareketi minimize et */
 @media (prefers-reduced-motion: reduce) {
-  .cinema-frame { transition: opacity 0.2s, transform 0s; transform: none !important; }
-  .cinema-progress-fill { transition: width 0.2s; }
-  .cinema-hint-arrow, .scroll-arrow { animation: none; }
+  /* Tüm animasyon ve geçişler */
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0s !important;
+  }
+
+  /* Smooth scroll'u kapat — anchor'a anında sıçrasın */
+  html { scroll-behavior: auto !important; }
+
+  /* AOS: gizleme yerine direkt göster */
+  [data-aos] { opacity: 1 !important; transform: none !important; }
+
+  /* Cinema sticky panel: hâlâ sticky kalır, ama frame opacity geçişi yumuşar
+     ve dekoratif tetikleyiciler susar */
+  .cinema-frame { transition: opacity 0.15s linear !important; transform: none !important; }
+  .cinema-progress-fill { transition: width 0.15s linear !important; }
+  .cinema-hint-arrow, .scroll-arrow { animation: none !important; }
 }
 
 /* ================================================
