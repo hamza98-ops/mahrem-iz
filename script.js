@@ -821,6 +821,70 @@ document.querySelectorAll('.yas-btn').forEach(btn => {
 });
 
 /* ================================================
+   7 GÜNLÜK TAKİP LİSTESİ TEMİZLİĞİ — Faz 2 üçüncü araç
+   localStorage ile durum saklanır (mahremiyet: çerez yok, sunucu yok)
+   ================================================ */
+(function initTemizlik() {
+  const grid = document.getElementById('temizlikGrid');
+  if (!grid) return;
+
+  const STORAGE_KEY = 'mahrem-iz.temizlik-7gun.v1';
+  const fillEl   = document.getElementById('temizlikProgressFill');
+  const countEl  = document.getElementById('temizlikProgressCount');
+  const barEl    = document.getElementById('temizlikProgressBar');
+  const finaleEl = document.getElementById('temizlikFinale');
+  const resetBtn = document.getElementById('temizlikReset');
+
+  // Saved state yükle
+  let state;
+  try {
+    state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  } catch { state = {}; }
+
+  function persist() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch { /* quota / private mode */ }
+  }
+
+  function refresh() {
+    let done = 0;
+    grid.querySelectorAll('.temizlik-card').forEach(card => {
+      const day = card.dataset.day;
+      const cb  = card.querySelector('.temizlik-check');
+      const isDone = !!state[day];
+      cb.checked = isDone;
+      card.classList.toggle('done', isDone);
+      if (isDone) done++;
+    });
+    const pct = Math.round((done / 7) * 100);
+    fillEl.style.width = pct + '%';
+    countEl.textContent = done;
+    barEl.setAttribute('aria-valuenow', done);
+    finaleEl.hidden = done < 7;
+  }
+
+  // Checkbox olayları
+  grid.querySelectorAll('.temizlik-check').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const day = cb.closest('.temizlik-card').dataset.day;
+      state[day] = cb.checked;
+      persist();
+      refresh();
+    });
+  });
+
+  // Reset
+  resetBtn.addEventListener('click', () => {
+    state = {};
+    persist();
+    refresh();
+    grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    showToast('7 gün sıfırlandı.');
+  });
+
+  refresh();
+})();
+
+/* ================================================
    PAYLAŞMADAN ÖNCE 10 SANİYE TESTİ — Faz 2 amiral aracı
    7 soru · 4 sonuç (yeşil/sarı/turuncu/kırmızı) · kırmızı çizgi mantığı
    Skor: her "Evet" = 1 puan. Soru 3 veya 7 "Evet" → otomatik kırmızı.

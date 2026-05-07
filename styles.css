@@ -674,6 +674,235 @@ em { font-style: italic; color: var(--gold-text); }
 .form-notice em { color: var(--gold-light); font-style: italic; }
 
 /* ================================================
+   7 GÜNLÜK TAKİP LİSTESİ TEMİZLİĞİ — Faz 2 üçüncü araç
+   ================================================ */
+.temizlik-section {
+  padding: 100px 0 110px;
+  background: linear-gradient(180deg, #f7f4ec 0%, var(--cream) 100%);
+  border-top: 1px solid rgba(15,31,61,0.06);
+}
+
+/* Progress bar */
+.temizlik-progress {
+  max-width: 720px;
+  margin: 48px auto 36px;
+  text-align: center;
+}
+.temizlik-progress-bar {
+  height: 10px;
+  background: rgba(15,31,61,0.08);
+  border-radius: 50px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.temizlik-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+  transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+  border-radius: 50px;
+}
+.temizlik-progress-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  color: var(--navy);
+}
+.temizlik-progress-text #temizlikProgressCount { color: var(--gold-text); font-weight: 700; }
+
+/* Görev kartı grid */
+.temizlik-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.temizlik-card {
+  background: var(--white);
+  border: 1px solid rgba(15,31,61,0.07);
+  border-top: 3px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 24px 26px 22px;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.temizlik-card:hover { box-shadow: var(--shadow-sm); transform: translateY(-2px); }
+.temizlik-card.done {
+  background: #f5fbf7;
+  border-top-color: var(--green);
+}
+.temizlik-card.done h4 { color: var(--green); }
+
+.temizlik-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.temizlik-day {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+.temizlik-day-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  font-weight: 600;
+}
+.temizlik-day-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold);
+  opacity: 0.65;
+  margin-top: 2px;
+}
+.temizlik-card.done .temizlik-day-num { color: var(--green); opacity: 0.85; }
+
+/* Custom checkbox (görev tamamla) */
+.temizlik-check { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
+.temizlik-check-label {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border: 2px solid rgba(15,31,61,0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+.temizlik-check-label::after {
+  content: '✓';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: transparent;
+  transition: var(--transition);
+}
+.temizlik-check-label:hover { border-color: var(--gold); }
+.temizlik-check:checked + .temizlik-check-label {
+  background: var(--green);
+  border-color: var(--green);
+}
+.temizlik-check:checked + .temizlik-check-label::after { color: var(--white); }
+.temizlik-check:focus-visible + .temizlik-check-label {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.temizlik-card h4 {
+  font-size: 1.05rem;
+  margin: 0 0 10px;
+  color: var(--navy);
+  line-height: 1.35;
+  transition: var(--transition);
+}
+.temizlik-card > p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text);
+  margin: 0 0 12px;
+}
+.temizlik-card > p em { color: var(--gold-text); font-style: italic; }
+
+.temizlik-steps {
+  list-style: none;
+  margin: auto 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.84rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+.temizlik-steps li {
+  position: relative;
+  padding-left: 16px;
+}
+.temizlik-steps li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+.temizlik-steps em { color: var(--gold-text); font-style: italic; }
+.temizlik-steps strong { color: var(--navy); }
+
+/* Tamamlanma finalı */
+.temizlik-finale {
+  max-width: 640px;
+  margin: 56px auto 0;
+  padding: 44px 36px;
+  background: linear-gradient(160deg, var(--navy) 0%, #1a4a3a 100%);
+  border-radius: var(--radius-lg);
+  color: var(--white);
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+.temizlik-finale[hidden] { display: none; }
+.temizlik-finale-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--green);
+  margin: 0 auto 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  box-shadow: 0 0 30px rgba(39,174,96,0.5);
+}
+.temizlik-finale h3 {
+  color: var(--white);
+  font-size: 1.6rem;
+  margin-bottom: 14px;
+}
+.temizlik-finale p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 24px;
+}
+.temizlik-finale em { color: var(--gold-light); font-style: italic; }
+.temizlik-finale-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.temizlik-finale-actions #temizlikReset {
+  background: rgba(255,255,255,0.12);
+  border: 2px solid rgba(255,255,255,0.3);
+  color: var(--white);
+}
+.temizlik-finale-actions #temizlikReset:hover { background: rgba(255,255,255,0.2); }
+
+.temizlik-storage {
+  text-align: center;
+  margin-top: 36px;
+  font-size: 0.78rem;
+  color: var(--text-light);
+}
+.temizlik-storage em { color: var(--gold-text); font-style: italic; }
+
+/* ================================================
    DEEPFAKE KRİZ REHBERİ — 7 adımlık ilk yardım
    ================================================ */
 .kriz-rehberi {
