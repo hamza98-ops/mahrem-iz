@@ -811,7 +811,7 @@ em { font-style: italic; color: var(--gold); }
 .fikhi-belgeler { padding: 100px 0 110px; }
 .belgeler-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
   gap: 28px;
 }
 .belge-card {
