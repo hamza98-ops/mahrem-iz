@@ -1385,6 +1385,293 @@ em { font-style: italic; color: var(--gold-text); }
 .trust-update a { color: var(--teal); text-decoration: underline; text-decoration-style: dotted; }
 
 /* ================================================
+   ANKET — ANA SAYFA "TOPLUMSAL AYNA" (#anket)
+   ================================================ */
+.anket-section {
+  padding: 100px 0 90px;
+  background: linear-gradient(180deg, var(--white) 0%, var(--cream) 100%);
+}
+.anket-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+  max-width: 1180px;
+  margin: 48px auto 36px;
+}
+.anket-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px 26px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(15,31,61,0.06);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+.anket-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+}
+.anket-card.featured::before { background: linear-gradient(90deg, var(--teal) 0%, var(--teal-light) 100%); }
+.anket-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+.anket-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.anket-card.featured .anket-num { color: var(--teal); }
+.anket-num-unit {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  font-weight: 400;
+  margin-left: 4px;
+}
+.anket-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-text);
+  margin-bottom: 18px;
+}
+.anket-card.featured .anket-label { color: var(--teal); }
+.anket-divider {
+  width: 36px;
+  height: 2px;
+  background: var(--gold);
+  margin-bottom: 16px;
+  opacity: 0.7;
+}
+.anket-text {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text);
+  margin: 0 0 14px;
+}
+.anket-text strong { color: var(--navy); font-weight: 600; }
+.anket-text em { color: var(--gold-text); font-style: italic; }
+.anket-note {
+  font-size: 0.84rem;
+  font-style: italic;
+  color: var(--text-light);
+  border-left: 2px solid var(--gold);
+  padding-left: 12px;
+  line-height: 1.55;
+  margin: auto 0 0;
+}
+.anket-note em { color: var(--gold-text); }
+
+.anket-cta {
+  text-align: center;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+.anket-meta-note {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 0.84rem;
+  color: var(--text-light);
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.65;
+}
+.anket-meta-note a { color: var(--teal); text-decoration: underline; text-decoration-style: dotted; }
+
+/* ================================================
+   ANKET DETAY SAYFASI (anket.html)
+   ================================================ */
+.anket-page {
+  padding: 64px 0 80px;
+  background: linear-gradient(180deg, var(--cream) 0%, var(--white) 50%);
+  min-height: 100vh;
+}
+.anket-hero {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 56px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(15,31,61,0.1);
+}
+.anket-hero h1 {
+  font-size: clamp(1.9rem, 4.5vw, 2.7rem);
+  margin: 18px 0 18px;
+}
+.anket-lede {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text);
+  max-width: 640px;
+  margin: 0 auto 28px;
+}
+.anket-hero-actions {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Detay sayfası içerik blokları */
+.anket-block {
+  max-width: 840px;
+  margin: 0 auto 44px;
+  padding: 32px 36px;
+  background: var(--white);
+  border: 1px solid rgba(15,31,61,0.07);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+.anket-block h2 {
+  font-size: 1.35rem;
+  margin: 0 0 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(201,168,76,0.25);
+  color: var(--navy);
+}
+.anket-block h3 {
+  font-size: 1rem;
+  color: var(--navy);
+  margin: 22px 0 14px;
+  font-weight: 600;
+}
+.anket-block .anket-meta {
+  font-size: 0.88rem;
+  color: var(--text-light);
+  font-style: italic;
+  margin-bottom: 18px;
+}
+
+/* Soru bloğu */
+.anket-q {
+  margin-bottom: 26px;
+  padding-bottom: 22px;
+  border-bottom: 1px dashed rgba(15,31,61,0.08);
+}
+.anket-q:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+
+/* Bar chart */
+.anket-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.anket-bar {
+  display: grid;
+  grid-template-columns: minmax(110px, 22%) 1fr 60px;
+  gap: 12px;
+  align-items: center;
+  font-size: 0.84rem;
+}
+.anket-bar-label {
+  color: var(--text);
+  line-height: 1.35;
+}
+.anket-bar-track {
+  height: 22px;
+  background: rgba(15,31,61,0.05);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.anket-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+  border-radius: 4px;
+  transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+  min-width: 4px;
+}
+.anket-bar-pct {
+  font-weight: 600;
+  color: var(--gold-text);
+  font-size: 0.82rem;
+  text-align: right;
+}
+@media (max-width: 600px) {
+  .anket-bar { grid-template-columns: 1fr; gap: 4px; }
+  .anket-bar-pct { text-align: left; }
+}
+
+/* Büyük istatistik (önem skoru gibi) */
+.anket-big-stat {
+  text-align: center;
+  margin: 18px 0 24px;
+  padding: 24px 20px;
+  background: linear-gradient(160deg, #fdfbf6 0%, var(--white) 100%);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: var(--radius);
+}
+.anket-big-num {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 6vw, 3.6rem);
+  font-weight: 700;
+  color: var(--gold-text);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.anket-big-num .anket-num-unit { font-size: 0.5em; color: var(--text-light); margin-left: 6px; }
+.anket-big-desc {
+  font-size: 0.86rem;
+  color: var(--text-light);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Yorum kutusu */
+.anket-comment {
+  margin-top: 14px;
+  padding: 12px 16px;
+  background: rgba(232,199,106,0.08);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+.anket-comment strong { color: var(--gold-text); font-weight: 600; }
+.anket-comment em { font-style: italic; color: var(--navy); }
+.anket-comment a { color: var(--teal); text-decoration: underline; text-decoration-style: dotted; }
+
+/* Açık uç alıntı */
+.anket-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--navy);
+  background: rgba(15,31,61,0.03);
+  border-left: 3px solid var(--teal-light);
+  padding: 18px 24px;
+  margin: 14px 0 16px;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.anket-quote cite {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.82rem;
+  color: var(--text-light);
+  font-style: normal;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 600px) {
+  .anket-block { padding: 22px 20px; }
+}
+
+/* ================================================
    AKADEMİ ANA SAYFA — 4 KART ÖZETLEYİCİ (#akademi)
    ================================================ */
 .akademi-cards {
