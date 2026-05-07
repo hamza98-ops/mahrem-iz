@@ -1385,6 +1385,273 @@ em { font-style: italic; color: var(--gold-text); }
 .trust-update a { color: var(--teal); text-decoration: underline; text-decoration-style: dotted; }
 
 /* ================================================
+   ARAÇLAR HUB (araclar.html)
+   ================================================ */
+.hub-page {
+  padding: 80px 0;
+  background: linear-gradient(180deg, var(--cream) 0%, var(--white) 60%);
+  min-height: 100vh;
+}
+.hub-hero {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 56px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(15,31,61,0.08);
+}
+.hub-hero h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  margin: 18px 0 22px;
+}
+.hub-lede {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--text);
+  max-width: 640px;
+  margin: 0 auto;
+}
+.hub-lede strong { color: var(--navy); font-weight: 600; }
+.hub-lede em { color: var(--gold-text); font-style: italic; }
+
+/* 3 araç kartı grid */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 22px;
+  max-width: 1180px;
+  margin: 0 auto 64px;
+}
+.hub-card {
+  background: var(--white);
+  border: 1px solid rgba(15,31,61,0.07);
+  border-top: 4px solid var(--gold);
+  border-radius: var(--radius-lg);
+  padding: 32px 30px 28px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+.hub-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.hub-card--paylasim { border-top-color: var(--gold); }
+.hub-card--karne    { border-top-color: var(--teal-light); }
+.hub-card--temizlik { border-top-color: var(--green); }
+
+.hub-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.hub-card-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--gold);
+  opacity: 0.55;
+  line-height: 1;
+}
+.hub-card--karne .hub-card-num    { color: var(--teal-light); }
+.hub-card--temizlik .hub-card-num { color: var(--green); }
+
+.hub-card-time {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  background: rgba(15,31,61,0.05);
+  padding: 4px 11px;
+  border-radius: 50px;
+}
+
+.hub-card-question {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--gold-text);
+  border-left: 3px solid var(--gold);
+  padding-left: 12px;
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+.hub-card h2 {
+  font-size: 1.4rem;
+  line-height: 1.3;
+  margin: 0 0 16px;
+  color: var(--navy);
+}
+.hub-card-desc {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text);
+  margin: 0 0 18px;
+}
+
+.hub-card-features {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.86rem;
+  color: var(--text-light);
+  flex: 1;
+}
+.hub-card-features li {
+  position: relative;
+  padding-left: 18px;
+  line-height: 1.5;
+}
+.hub-card-features li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+.hub-card-features strong { color: var(--navy); font-weight: 600; }
+
+.hub-card-cta {
+  align-self: flex-start;
+  font-size: 0.88rem;
+  padding: 11px 24px;
+}
+
+/* Akış önerisi */
+.hub-flow {
+  max-width: 800px;
+  margin: 0 auto 56px;
+  padding: 36px 36px;
+  background: var(--white);
+  border: 1px solid rgba(15,31,61,0.08);
+  border-left: 3px solid var(--teal-light);
+  border-radius: var(--radius);
+}
+.hub-flow h2 {
+  font-size: 1.25rem;
+  color: var(--navy);
+  margin: 0 0 14px;
+}
+.hub-flow p {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin: 0 0 16px;
+}
+.hub-flow-list {
+  list-style: none;
+  counter-reset: hub-flow;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.hub-flow-list li {
+  position: relative;
+  counter-increment: hub-flow;
+  padding: 10px 14px 10px 44px;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text);
+  background: rgba(15,31,61,0.025);
+  border-radius: var(--radius);
+}
+.hub-flow-list li::before {
+  content: counter(hub-flow);
+  position: absolute;
+  left: 14px;
+  top: 11px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--gold-text);
+}
+.hub-flow-list strong { color: var(--navy); }
+
+/* Gizlilik vaadi */
+.hub-privacy {
+  max-width: 800px;
+  margin: 0 auto 56px;
+  padding: 40px 36px;
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+.hub-privacy-icon {
+  font-size: 2.4rem;
+  margin-bottom: 14px;
+}
+.hub-privacy h2 {
+  color: var(--white);
+  font-size: 1.4rem;
+  margin: 0 0 14px;
+}
+.hub-privacy h2 em { color: var(--gold-light); font-style: italic; }
+.hub-privacy > p {
+  color: rgba(255,255,255,0.78);
+  margin: 0 0 22px;
+}
+.hub-privacy-list {
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hub-privacy-list li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.6;
+}
+.hub-privacy-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: 700;
+}
+.hub-privacy-list strong { color: var(--white); }
+.hub-privacy-note {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.6);
+  margin: 0;
+}
+.hub-privacy-note a {
+  color: var(--gold-light);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+.hub-bottom-cta {
+  text-align: center;
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+@media (max-width: 600px) {
+  .hub-card { padding: 24px 22px 22px; }
+  .hub-flow { padding: 24px 22px; }
+  .hub-privacy { padding: 30px 24px; }
+}
+
+/* ================================================
    SOSYALFEST PROJE DOSYASI (sosyalfest.html)
    ================================================ */
 .proje-page {
