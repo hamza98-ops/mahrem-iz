@@ -1385,6 +1385,369 @@ em { font-style: italic; color: var(--gold-text); }
 .trust-update a { color: var(--teal); text-decoration: underline; text-decoration-style: dotted; }
 
 /* ================================================
+   AKADEMİ ANA SAYFA — 4 KART ÖZETLEYİCİ (#akademi)
+   ================================================ */
+.akademi-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 22px;
+  max-width: 1180px;
+  margin: 48px auto 0;
+}
+.akademi-card {
+  background: var(--white);
+  border: 1px solid rgba(15,31,61,0.08);
+  border-top: 3px solid var(--gold);
+  border-radius: var(--radius-lg);
+  padding: 26px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+.akademi-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.akademi-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.akademi-card-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-text);
+  background: rgba(201,168,76,0.1);
+  padding: 4px 11px;
+  border-radius: 50px;
+}
+.akademi-card-time {
+  font-size: 0.74rem;
+  color: var(--text-light);
+  font-weight: 500;
+}
+.akademi-card h3 {
+  font-size: 1.25rem;
+  line-height: 1.32;
+  color: var(--navy);
+  margin: 0 0 14px;
+}
+.akademi-card-tldr {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text);
+  margin: 0 0 16px;
+  flex: 1;
+}
+.akademi-card-tldr strong { color: var(--navy); font-weight: 600; }
+.akademi-card-tldr em { color: var(--gold-text); font-style: italic; }
+.akademi-card-source {
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--text-light);
+  margin-bottom: 14px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(15,31,61,0.06);
+}
+.akademi-card-link {
+  align-self: flex-start;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--gold-text);
+  padding: 8px 16px;
+  border: 1px solid rgba(201,168,76,0.4);
+  border-radius: 50px;
+  transition: var(--transition);
+}
+.akademi-card-link:hover { background: var(--gold); color: var(--navy-deep); border-color: var(--gold); }
+
+/* ================================================
+   AKADEMİ ALT SAYFASI ŞABLONU (akademi/*.html)
+   ================================================ */
+.akademi-page {
+  padding: 64px 0 80px;
+  background: linear-gradient(180deg, var(--cream) 0%, var(--white) 60%);
+  min-height: 100vh;
+}
+.akademi-article-page {
+  max-width: 820px;
+  margin: 0 auto;
+}
+.akademi-page-hero {
+  text-align: center;
+  margin-bottom: 48px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid rgba(15,31,61,0.1);
+}
+.akademi-page-hero h1 {
+  font-size: clamp(1.8rem, 4.5vw, 2.7rem);
+  margin: 18px 0 18px;
+}
+.akademi-meta-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.akademi-meta-pill {
+  display: inline-block;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  background: rgba(15,31,61,0.05);
+  padding: 4px 12px;
+  border-radius: 50px;
+}
+
+/* Yazar atfı kutusu */
+.akademi-author {
+  display: block;
+  margin: 12px auto 22px;
+  padding: 12px 18px;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--text-light);
+  background: rgba(232,199,106,0.08);
+  border: 1px solid rgba(232,199,106,0.25);
+  border-radius: var(--radius);
+  max-width: 720px;
+  text-align: left;
+}
+.akademi-author strong { color: var(--gold-text); font-weight: 600; }
+.akademi-author em { color: var(--navy); font-style: italic; }
+
+/* TL;DR kutusu */
+.akademi-tldr {
+  margin-top: 24px;
+  padding: 22px 26px;
+  background: var(--white);
+  border: 1px solid rgba(15,31,61,0.08);
+  border-left: 4px solid var(--gold);
+  border-radius: var(--radius);
+  font-size: 0.96rem;
+  line-height: 1.7;
+  color: var(--text);
+  text-align: left;
+  box-shadow: var(--shadow-sm);
+}
+.akademi-tldr strong { color: var(--navy); font-weight: 600; }
+.akademi-tldr em { color: var(--gold-text); font-style: italic; }
+
+/* Akademi içerik bloğu */
+.akademi-block {
+  margin: 0 0 36px;
+}
+.akademi-block h2 {
+  font-size: 1.4rem;
+  margin: 0 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(201,168,76,0.3);
+  color: var(--navy);
+}
+.akademi-block h3 {
+  font-size: 1.05rem;
+  color: var(--navy);
+  margin: 22px 0 10px;
+}
+.akademi-block p {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--text);
+  margin: 0 0 16px;
+}
+.akademi-block p:last-child { margin: 0; }
+.akademi-block strong { color: var(--navy); font-weight: 600; }
+.akademi-block em { color: var(--gold-text); font-style: italic; }
+.akademi-block a { color: var(--teal); text-decoration: underline; text-decoration-style: dotted; }
+.akademi-block a:hover { color: var(--gold-text); }
+
+/* Akademi listeler */
+.akademi-list {
+  list-style: none;
+  margin: 8px 0 18px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.akademi-list li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 0.96rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+.akademi-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+}
+.akademi-list li strong { color: var(--navy); }
+
+.akademi-numbered {
+  list-style: none;
+  counter-reset: akademi-num;
+  margin: 8px 0 18px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.akademi-numbered li {
+  position: relative;
+  counter-increment: akademi-num;
+  padding: 10px 14px 10px 44px;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text);
+  background: rgba(15,31,61,0.025);
+  border-radius: var(--radius);
+}
+.akademi-numbered li::before {
+  content: counter(akademi-num);
+  position: absolute;
+  left: 14px;
+  top: 12px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--gold-text);
+}
+.akademi-numbered li strong { color: var(--navy); }
+
+/* Arapça alıntı kutusu */
+.akademi-arabic {
+  background: rgba(15,31,61,0.04);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 16px 22px;
+  margin: 14px 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-style: normal;
+  quotes: none;
+}
+.akademi-arabic::before, .akademi-arabic::after { content: none; }
+.akademi-arabic > *:first-child {
+  font-family: 'Amiri', 'Times New Roman', serif;
+  font-size: 1.15rem;
+  line-height: 2;
+  color: var(--navy);
+  direction: rtl;
+  text-align: right;
+}
+.akademi-arabic-tr {
+  font-size: 0.94rem;
+  line-height: 1.7;
+  color: var(--text);
+  font-style: normal;
+}
+.akademi-arabic-tr strong { color: var(--navy); font-weight: 600; }
+.akademi-arabic-tr em { color: var(--gold-text); font-style: italic; }
+.akademi-arabic cite {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  font-style: italic;
+  display: block;
+  margin-top: 4px;
+}
+
+/* Callout */
+.akademi-callout {
+  background: linear-gradient(160deg, #fdfbf6 0%, var(--white) 100%);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  margin: 14px 0 18px;
+}
+.akademi-callout p { margin: 0; font-size: 0.95rem; line-height: 1.7; }
+.akademi-callout strong { color: var(--navy); font-weight: 700; }
+.akademi-callout em { color: var(--gold-text); font-style: italic; }
+
+/* Akademi quote */
+.akademi-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--navy);
+  text-align: center;
+  margin: 36px 0;
+  padding: 22px 28px;
+  border-top: 1px solid rgba(201,168,76,0.3);
+  border-bottom: 1px solid rgba(201,168,76,0.3);
+}
+.akademi-quote cite {
+  display: block;
+  font-size: 0.85rem;
+  margin-top: 8px;
+  color: var(--text-light);
+  font-style: normal;
+}
+.akademi-quote em { color: var(--gold-text); }
+
+/* Footer */
+.akademi-page-footer {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(15,31,61,0.1);
+}
+.akademi-page-footer h3 {
+  font-size: 1.05rem;
+  color: var(--navy);
+  margin: 0 0 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.akademi-refs {
+  list-style: none;
+  margin: 0 0 28px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.akademi-refs li {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--text-light);
+  padding-left: 18px;
+  position: relative;
+}
+.akademi-refs li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+.akademi-refs em { color: var(--text); font-style: italic; }
+.akademi-refs a { color: var(--teal); text-decoration: underline; text-decoration-style: dotted; }
+.akademi-page-cta {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .akademi-arabic { padding: 14px 18px; }
+  .akademi-arabic > *:first-child { font-size: 1.05rem; }
+  .akademi-block h2 { font-size: 1.2rem; }
+}
+
+/* ================================================
    ARAÇLAR HUB (araclar.html)
    ================================================ */
 .hub-page {

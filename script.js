@@ -88,44 +88,9 @@ document.addEventListener('keydown', e => {
 })();
 
 /* ================================================
-   AKADEMİ SEKMELERİ — ARIA + Klavye Desteği
-   (← → ok tuşları, Enter, Space)
+   AKADEMİ — Sekme yapısı /akademi/*.html alt sayfalarına taşındı
+   (Faz 3 — 3 katmanlı model: 1dk özet kart + tam yazı sayfası + PDF)
    ================================================ */
-const tabBtns     = Array.from(document.querySelectorAll('.tab-btn'));
-const tabContents = document.querySelectorAll('.tab-content');
-
-function activateTab(btn) {
-  tabBtns.forEach(b => {
-    b.classList.remove('active');
-    b.setAttribute('aria-selected', 'false');
-    b.setAttribute('tabindex', '-1');
-  });
-  tabContents.forEach(tc => tc.classList.add('hidden'));
-
-  btn.classList.add('active');
-  btn.setAttribute('aria-selected', 'true');
-  btn.setAttribute('tabindex', '0');
-  btn.focus();
-
-  const panel = document.getElementById('tab-' + btn.dataset.tab);
-  if (panel) panel.classList.remove('hidden');
-}
-
-tabBtns.forEach((btn, i) => {
-  btn.setAttribute('tabindex', i === 0 ? '0' : '-1');
-
-  btn.addEventListener('click', () => activateTab(btn));
-
-  btn.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight') {
-      e.preventDefault();
-      activateTab(tabBtns[(i + 1) % tabBtns.length]);
-    } else if (e.key === 'ArrowLeft') {
-      e.preventDefault();
-      activateTab(tabBtns[(i - 1 + tabBtns.length) % tabBtns.length]);
-    }
-  });
-});
 
 /* ================================================
    ETİK KARNE — Erişilebilir Radio Yıldız Puanlama
