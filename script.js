@@ -494,7 +494,8 @@ document.getElementById('btnShare').addEventListener('click', async () => {
 document.getElementById('btnPrint2').addEventListener('click', () => window.print());
 
 /* ================================================
-   İLETİŞİM FORMU — Honeypot + KVKK + FormSubmit AJAX
+   İLETİŞİM FORMU — Honeypot + FormSubmit AJAX
+   KVKK aydınlatma yeterli; açık rıza kutusu kaldırıldı.
    ================================================ */
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
@@ -504,14 +505,6 @@ if (contactForm) {
     // Honeypot kontrolü
     const honeypot = contactForm.querySelector('.honeypot');
     if (honeypot && honeypot.value) return; // Bot tespiti, sessizce durdur
-
-    // KVKK kontrolü
-    const kvkk = document.getElementById('kvkk');
-    if (kvkk && !kvkk.checked) {
-      showToast('Lütfen KVKK onayını verin.');
-      kvkk.focus();
-      return;
-    }
 
     const btn          = contactForm.querySelector('button[type="submit"]');
     const originalText = btn.textContent;

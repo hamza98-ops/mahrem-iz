@@ -1316,16 +1316,28 @@
               <textarea id="message" name="message" rows="4" placeholder="Görüş, öneri veya sorunuzu yazın..." required></textarea>
             </div>
 
-            <!-- KVKK: Açık rıza -->
-            <div class="form-group form-checkbox">
-              <input type="checkbox" id="kvkk" name="kvkk" required />
-              <label for="kvkk">
-                Kişisel verilerimin yalnızca iletişim amacıyla işleneceğini kabul ediyorum.
-                <a href="#kaynakca" class="kvkk-link">KVKK Bilgilendirmesi</a>
-              </label>
+            <!--
+              KVKK ayrıştırması:
+              · Aşağıdaki "form-warning" mahremiyet hassasiyeti uyarısıdır.
+              · "form-notice" KVKK aydınlatma yükümlülüğünün özeti — onay kutusu değil.
+              · Açık rıza kutusu KALDIRILDI: ileti şikâyet/yanıt amaçlı işleniyor; KVKK
+                m.5/2-c/f kapsamında açık rıza zorunlu değil. Aydınlatma yeterli.
+            -->
+            <div class="form-warning" role="note">
+              <strong>Lütfen dikkat:</strong> Bu form üzerinden çocuklara ait
+              yüz, konum, okul, sağlık veya özel görüntü göndermeyin. Mesajınız
+              insan tarafından okunur — projemizin mahremiyet hassasiyetini paylaşmanız
+              hepimiz için kıymetlidir.
             </div>
 
             <button type="submit" class="btn btn-primary full-width">Gönder</button>
+
+            <p class="form-notice">
+              Bu formu gönderdiğinizde adınız, e-posta adresiniz ve mesajınız
+              <em>yalnızca yanıt vermek amacıyla</em> işlenir; bülten veya tanıtım
+              listesine eklenmez. Detaylı bilgi için
+              <a href="kvkk.html" class="kvkk-link">Aydınlatma Metni</a>.
+            </p>
           </form>
           <div class="iletisim-info">
             <p>📧 mahremiz@sosyalfest.org</p>
@@ -1480,6 +1492,7 @@
           <a href="#manifesto">Manifesto</a>
           <a href="#hakkimizda">Hakkımızda</a>
           <a href="#kaynakca">Kaynakça</a>
+          <a href="kvkk.html">Aydınlatma Metni</a>
         </div>
       </div>
       <div class="footer-bottom">
