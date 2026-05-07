@@ -674,6 +674,134 @@ em { font-style: italic; color: var(--gold-text); }
 .form-notice em { color: var(--gold-light); font-style: italic; }
 
 /* ================================================
+   DEEPFAKE KRİZ REHBERİ — 7 adımlık ilk yardım
+   ================================================ */
+.kriz-rehberi {
+  margin: 56px auto 0;
+  max-width: 880px;
+  padding: 40px 36px;
+  background: linear-gradient(180deg, #fef9f7 0%, var(--white) 100%);
+  border: 1px solid rgba(231,76,60,0.15);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.kriz-header {
+  text-align: center;
+  margin-bottom: 36px;
+  border-bottom: 1px solid rgba(15,31,61,0.08);
+  padding-bottom: 28px;
+}
+.kriz-header .section-tag {
+  background: rgba(231,76,60,0.1);
+  border-color: rgba(231,76,60,0.3);
+  color: #c0392b;
+}
+.kriz-header h3 {
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  margin: 14px 0 16px;
+}
+.kriz-header h3 em { color: var(--gold-text); }
+.kriz-lede {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text);
+  max-width: 680px;
+  margin: 0 auto;
+}
+.kriz-lede strong { color: var(--navy); }
+.kriz-lede em { color: var(--gold-text); font-style: italic; }
+
+.kriz-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.kriz-step {
+  display: flex;
+  gap: 22px;
+  background: var(--white);
+  border: 1px solid rgba(15,31,61,0.06);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 22px 26px;
+  transition: var(--transition);
+}
+.kriz-step:hover { border-color: rgba(15,31,61,0.12); transform: translateX(2px); }
+.kriz-step--accent { border-left-color: var(--green); background: #f8fdfb; }
+
+.kriz-step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--gold);
+  opacity: 0.55;
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 44px;
+  padding-top: 4px;
+}
+.kriz-step--accent .kriz-step-num { color: var(--green); opacity: 0.7; }
+
+.kriz-step-body { flex: 1; }
+.kriz-step-body h4 {
+  font-size: 1.05rem;
+  margin: 0 0 8px;
+  color: var(--navy);
+}
+.kriz-step-body p {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text);
+  margin: 0 0 8px;
+}
+.kriz-step-body p:last-child { margin: 0; }
+.kriz-step-body strong { color: var(--navy); font-weight: 600; }
+.kriz-step-body em { color: var(--gold-text); font-style: italic; }
+
+.kriz-resources {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.88rem;
+}
+.kriz-resources li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--text);
+  line-height: 1.55;
+}
+.kriz-resources li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+}
+.kriz-resources strong { color: var(--navy); }
+.kriz-resources a { color: var(--teal); text-decoration: underline; text-decoration-style: dotted; }
+.kriz-resources a:hover { color: var(--gold-text); }
+
+.kriz-disclaimer {
+  margin-top: 32px !important;
+  background: rgba(231,76,60,0.05);
+  border: 1px solid rgba(231,76,60,0.2);
+  border-left: 3px solid #c0392b;
+}
+.kriz-disclaimer strong { color: #c0392b; }
+
+@media (max-width: 600px) {
+  .kriz-rehberi { padding: 28px 20px; }
+  .kriz-step { gap: 14px; padding: 18px; }
+  .kriz-step-num { font-size: 1.4rem; min-width: 32px; }
+}
+
+/* ================================================
    PAYLAŞMADAN ÖNCE 10 SANİYE TESTİ — Faz 2 amiral aracı
    ================================================ */
 .paylasim-section {
