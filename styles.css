@@ -122,6 +122,20 @@ em { font-style: italic; color: var(--gold-text); }
   display: inline-block;
   text-align: left;
 }
+.fetva-not {
+  margin: 28px auto 0;
+  max-width: 720px;
+  padding: 14px 20px;
+  background: rgba(15,31,61,0.04);
+  border: 1px solid rgba(15,31,61,0.08);
+  border-radius: var(--radius);
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--text-light);
+  text-align: left;
+}
+.fetva-not strong { color: var(--navy); font-weight: 600; }
+.fetva-not em { color: var(--gold-text); font-style: italic; }
 
 /* ================================================
    TOAST BİLDİRİM
@@ -312,6 +326,7 @@ em { font-style: italic; color: var(--gold-text); }
 .stat-source { font-size: 0.78rem; color: var(--text-light); }
 .stat-source a { color: var(--teal); text-decoration: underline; text-decoration-style: dotted; }
 .stat-source a:hover { color: var(--gold-text); }
+.stat-scope { display: block; margin-top: 4px; font-size: 0.74rem; color: var(--text-light); opacity: 0.85; }
 .stats-cta { text-align: center; }
 
 /* ================================================
@@ -867,8 +882,46 @@ em { font-style: italic; color: var(--gold-text); }
   text-transform: uppercase; color: var(--gold-text);
 }
 .belge-body h4 { font-size: 1.2rem; line-height: 1.35; color: var(--navy); }
-.belge-body p { color: var(--text-light); font-size: 0.92rem; flex: 1; }
-.belge-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.belge-body p { color: var(--text-light); font-size: 0.92rem; }
+.belge-meta {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+  color: var(--text-light);
+  letter-spacing: 0.01em;
+}
+.belge-meta li { white-space: nowrap; }
+.belge-meta li:not(:last-child)::after {
+  content: '·';
+  margin: 0 10px;
+  color: var(--gold);
+  opacity: 0.7;
+  font-weight: 700;
+}
+.belge-bullets {
+  list-style: none;
+  margin: 2px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 0.86rem;
+  color: var(--text-light);
+  line-height: 1.55;
+}
+.belge-bullets li { display: flex; gap: 9px; }
+.belge-bullets li::before {
+  content: '→';
+  color: var(--gold);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.belge-bullets strong { color: var(--navy); font-weight: 600; }
+.belge-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: auto; padding-top: 6px; }
 .belge-actions .btn { padding: 10px 22px; font-size: 0.85rem; }
 
 /* ================================================
