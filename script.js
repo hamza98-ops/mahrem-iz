@@ -3,6 +3,18 @@
    (defer ile yüklenir: DOM her zaman hazır)
    ================================================ */
 
+/* ================================================
+   PWA — Service Worker register
+   Android cihazda "Ana ekrana ekle" ile yüklenebilir;
+   offline temel kullanım sağlar; çerezsiz, tracker'sız.
+   ================================================ */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .catch(() => { /* offline yüklenememe hatası sessiz geçilir */ });
+  });
+}
+
 /* ------------------------------------------------
    TOAST BİLDİRİM
    ------------------------------------------------ */
