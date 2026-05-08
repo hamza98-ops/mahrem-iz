@@ -2,8 +2,8 @@
   "name": "Mahrem-İz — Dijital Mahremiyet & Aile Etiği",
   "short_name": "Mahrem-İz",
   "description": "Aileler için dijital paylaşım, çocuk mahremiyeti ve sosyal medya takibi karar rehberi. Klasik fıkıh perspektifinden 3 interaktif araç (Paylaşım Testi, Etik Karne, 7 Günlük Temizlik).",
-  "start_url": "/mahrem-iz/",
-  "scope": "/mahrem-iz/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#07132a",
@@ -36,21 +36,21 @@
       "name": "Paylaşmadan Önce 10 Saniye Testi",
       "short_name": "Paylaşım Testi",
       "description": "Bu fotoğraf veya video paylaşılmalı mı? 7 soruda hızlı ölçü.",
-      "url": "/mahrem-iz/#paylasim-testi",
+      "url": "/#paylasim-testi",
       "icons": [{ "src": "assets/pwa/icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "Etik Karne",
       "short_name": "Etik Karne",
       "description": "Takip ettiğiniz hesabı 7 etik kriterde değerlendirin.",
-      "url": "/mahrem-iz/#karne",
+      "url": "/#karne",
       "icons": [{ "src": "assets/pwa/icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "7 Günlük Temizlik",
       "short_name": "7 Gün Temizlik",
       "description": "Bir haftalık takip listesi temizliği kampanyası.",
-      "url": "/mahrem-iz/#temizlik-7gun",
+      "url": "/#temizlik-7gun",
       "icons": [{ "src": "assets/pwa/icon-192.png", "sizes": "192x192" }]
     }
   ]
