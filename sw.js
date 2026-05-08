@@ -9,7 +9,7 @@
  * Hiçbir kullanıcı verisi sw tarafında saklanmaz; yalnızca statik dosyalar.
  */
 
-const CACHE_VERSION = 'mahrem-iz-v1';
+const CACHE_VERSION = 'mahrem-iz-v2';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -19,10 +19,12 @@ const CORE_ASSETS = [
   './assets/og/mahrem-iz-og.jpg',
   './assets/pwa/icon-192.png',
   './assets/pwa/icon-512.png',
+  './assets/fonts/fonts.css',
   './kvkk.html',
   './sosyalfest.html',
   './araclar.html',
   './anket.html',
+  './etki.html',
   './akademi/fikih.html',
   './akademi/sharenting.html',
   './akademi/nazar.html',
