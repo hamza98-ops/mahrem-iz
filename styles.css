@@ -1475,6 +1475,44 @@ em { font-style: italic; color: var(--gold-text); }
 .etki-not strong { color: var(--navy); font-weight: 600; }
 .etki-not em { color: var(--gold-text); font-style: italic; }
 
+.etki-canli-cta {
+  text-align: center;
+  margin-top: 32px;
+}
+.etki-canli-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  border-radius: 50px;
+  box-shadow: 0 4px 18px rgba(201,168,76,0.25);
+}
+.canli-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #4ade80;
+  display: inline-block;
+  box-shadow: 0 0 0 0 rgba(74,222,128,0.6);
+  animation: canliPulse 2s ease-in-out infinite;
+}
+@keyframes canliPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.6); }
+  50%      { box-shadow: 0 0 0 6px rgba(74,222,128,0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .canli-dot { animation: none; }
+}
+.etki-canli-note {
+  margin-top: 12px;
+  font-size: 0.82rem;
+  color: var(--text-light);
+  letter-spacing: 0.2px;
+}
+
 /* ================================================
    İÇERİK ÜRETİCİ 8 İLKESİ (#ilkeler)
    ================================================ */
