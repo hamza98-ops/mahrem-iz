@@ -15,6 +15,20 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+/* ================================================
+   ÇEREZSİZ OLAY ÖLÇÜMÜ — GoatCounter custom events
+   KVKK/GDPR uyumlu: çerez yok, IP toplanmaz, kullanıcı parmak izi yok.
+   Yalnızca anonim sayım: kaç kez X aracı kullanıldı.
+   GoatCounter henüz kurulmadıysa fonksiyon sessizce no-op olur.
+   ================================================ */
+function gcEvent(name) {
+  if (typeof window === 'undefined') return;
+  if (!window.goatcounter || typeof window.goatcounter.count !== 'function') return;
+  try {
+    window.goatcounter.count({ path: name, event: true });
+  } catch { /* sayım başarısızsa sessiz geçilir */ }
+}
+
 /* ------------------------------------------------
    TOAST BİLDİRİM
    ------------------------------------------------ */
@@ -222,10 +236,18 @@ function updateKarneScore() {
   // Kopyala butonunu göster
   const copyBtn = document.getElementById('copyKarne');
   if (copyBtn) copyBtn.style.display = answered > 0 ? 'inline-block' : 'none';
+
+  // GoatCounter: 7 kriterin tamamı doldurulduğunda + kırmızı çizgi tetiklendiğinde
+  if (answered === 7 && !updateKarneScore._sent) {
+    updateKarneScore._sent = true;
+    gcEvent('event/karne-completed');
+    if (tripped.length > 0) gcEvent('event/karne-redline');
+  }
 }
 
 /* --- Karneyi Sıfırla --- */
 document.getElementById('resetKarne').addEventListener('click', () => {
+  updateKarneScore._sent = false;  // yeniden doldurulduğunda event gönder
   Object.keys(scores).forEach(k => scores[k] = 0);
   document.querySelectorAll('.star-radio').forEach(r => r.checked = false);
   document.querySelectorAll('.karne-stars label').forEach(l => {
@@ -469,6 +491,7 @@ document.getElementById('copyKarne').addEventListener('click', async () => {
     a.href     = canvas.toDataURL('image/png');
     a.download = `mahrem-iz-etik-karne-${pct}-100.png`;
     a.click();
+    gcEvent('event/karne-card-downloaded');
     showToast('Kart indiriliyor.');
   });
 
@@ -503,12 +526,16 @@ document.getElementById('copyKarne').addEventListener('click', async () => {
 /* ================================================
    SÖZLEŞME: PRINT BUTONU
    ================================================ */
-document.getElementById('btnPrint').addEventListener('click', () => window.print());
+document.getElementById('btnPrint').addEventListener('click', () => {
+  gcEvent('event/sozlesme-printed');
+  window.print();
+});
 
 /* ================================================
    MANİFESTO: PAYLAŞ + YAZDIR
    ================================================ */
 document.getElementById('btnShare').addEventListener('click', async () => {
+  gcEvent('event/manifesto-shared');
   const shareData = {
     title: 'Mahrem-İz Manifestosu',
     text:  'Mutluluğu Sergileme, Huzuru Yaşa. Dijital mahremiyet ve aile etiği üzerine bir farkındalık hareketi.',
@@ -527,7 +554,10 @@ document.getElementById('btnShare').addEventListener('click', async () => {
   }
 });
 
-document.getElementById('btnPrint2').addEventListener('click', () => window.print());
+document.getElementById('btnPrint2').addEventListener('click', () => {
+  gcEvent('event/manifesto-printed');
+  window.print();
+});
 
 /* ================================================
    İLETİŞİM FORMU — Honeypot + FormSubmit AJAX
@@ -757,6 +787,8 @@ document.querySelectorAll('.yt-facade').forEach(facade => {
   const trigger = facade.querySelector('.yt-facade-trigger');
   if (!trigger) return;
   trigger.addEventListener('click', () => {
+    const id = facade.dataset.yt || 'unknown';
+    gcEvent('event/video-played-' + id);
     const id    = facade.dataset.yt;
     const title = facade.dataset.title || 'YouTube video';
     if (!id) return;
@@ -846,6 +878,12 @@ document.querySelectorAll('.yas-btn').forEach(btn => {
       state[day] = cb.checked;
       persist();
       refresh();
+      // GoatCounter: gün tamamlandığında ölç
+      if (cb.checked) gcEvent('event/temizlik-day-' + day);
+      // 7/7 olduğunda finale event
+      if (Object.values(state).filter(Boolean).length === 7) {
+        gcEvent('event/temizlik-completed-7-7');
+      }
     });
   });
 
@@ -931,10 +969,16 @@ document.querySelectorAll('.yas-btn').forEach(btn => {
       redlineEl.hidden = true;
     }
 
-    // Sonuç ilk göründüğünde sayfayı paneline kaydır
+    // Sonuç ilk göründüğünde sayfayı paneline kaydır + GoatCounter event
     if (!result.dataset.shown) {
       result.dataset.shown = '1';
       setTimeout(() => result.scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
+      gcEvent('event/paylasim-testi-completed');
+      if (r.level === 'red')        gcEvent('event/paylasim-testi-red');
+      else if (r.level === 'orange') gcEvent('event/paylasim-testi-orange');
+      else if (r.level === 'yellow') gcEvent('event/paylasim-testi-yellow');
+      else                            gcEvent('event/paylasim-testi-green');
+      if (r.tripped.length > 0)      gcEvent('event/paylasim-testi-redline');
     }
   }
 
@@ -963,3 +1007,29 @@ document.querySelectorAll('.yas-btn').forEach(btn => {
     list.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 })();
+
+/* ================================================
+   PDF + CSV indirme + Aydınlatma metni event ölçümü
+   Event delegation ile tüm download attribute'lu link'leri yakalar
+   ================================================ */
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a');
+  if (!a) return;
+  // PDF indirme
+  if (a.hasAttribute('download') && a.href && a.href.toLowerCase().includes('.pdf')) {
+    const fname = a.href.split('/').pop().split('?')[0];
+    gcEvent('event/pdf-downloaded-' + fname);
+  }
+  // CSV indirme
+  if (a.hasAttribute('download') && a.href && a.href.toLowerCase().includes('.csv')) {
+    gcEvent('event/csv-downloaded-anket');
+  }
+  // KVKK aydınlatma metnine erişim
+  if (a.href && a.href.endsWith('kvkk.html')) {
+    gcEvent('event/kvkk-page-opened');
+  }
+  // Sosyalfest proje dosyasına erişim
+  if (a.href && a.href.endsWith('sosyalfest.html')) {
+    gcEvent('event/sosyalfest-page-opened');
+  }
+});

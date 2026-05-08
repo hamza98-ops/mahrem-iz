@@ -50,16 +50,17 @@
   <script src="script.js" defer></script>
 
   <!--
-    KVKK/GDPR-uyumlu, çerezsiz analitik (opsiyonel).
+    KVKK/GDPR-uyumlu, çerezsiz analitik.
     Mahremiyet sitesi olduğumuz için Google Analytics KULLANMIYORUZ.
-    Aktivasyon (3 dakikalık kurulum):
-      1. https://www.goatcounter.com/signup üzerinden ücretsiz hesap aç (kod adı: mahremiz)
-      2. Aşağıdaki <script> satırının başındaki yorum işaretlerini kaldır
-      3. Bitti — sayfa görüntüleri toplanmaya başlar (çerez yok, IP toplanmaz)
+    GoatCounter: çerez yok, IP toplanmaz, kullanıcı parmak izi yok.
+    Yalnızca anonim sayım (sayfa + custom event'ler).
+
+    AKTİVASYON: kullanıcı goatcounter.com/signup'tan 'mahremiz' code-name
+    ile hesap açmalı. Hesap aktif olduğunda aşağıdaki snippet otomatik
+    çalışır; yoksa script.js'deki gcEvent helper sessizce no-op olur.
   -->
-  <!--
-  <script data-goatcounter="https://mahremiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-  -->
+  <script data-goatcounter="https://mahremiz.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
 
   <!-- Yapısal veri: arama motorlarına proje kimliğini bildirir -->
   <script type="application/ld+json">
