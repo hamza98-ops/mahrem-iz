@@ -370,15 +370,17 @@
 
     function fetchCount(path) {
       // GoatCounter public counter: /counter/<path>.json → { count, count_unique }
+      // 404 = path için henüz hit yok → 0 (festival öncesi normal durum).
+      // Diğer hatalar (network, 5xx, vb.) → null (UI "—" gösterir).
       var url = GC_BASE + path + '.json';
       return fetch(url, { cache: 'no-store' })
         .then(function (r) {
+          if (r.status === 404) return 0;
           if (!r.ok) throw new Error('HTTP ' + r.status);
-          return r.json();
-        })
-        .then(function (j) {
-          var v = parseInt(j.count, 10);
-          return isFinite(v) ? v : 0;
+          return r.json().then(function (j) {
+            var v = parseInt(j.count, 10);
+            return isFinite(v) ? v : 0;
+          });
         })
         .catch(function () { return null; });
     }
