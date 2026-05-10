@@ -9,7 +9,7 @@
  * Hiçbir kullanıcı verisi sw tarafında saklanmaz; yalnızca statik dosyalar.
  */
 
-const CACHE_VERSION = 'mahrem-iz-v5';
+const CACHE_VERSION = 'mahrem-iz-v6';
 const CORE_ASSETS = [
   './',
   './index.html',

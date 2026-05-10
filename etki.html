@@ -243,8 +243,39 @@
       color: var(--gold);
       text-align: center;
       max-width: 720px;
-      margin: 0 auto 32px;
+      margin: 0 auto 24px;
       line-height: 1.5;
+    }
+
+    /* Site özet bandı: toplam ziyaret + tekil ziyaretçi */
+    .etki-summary {
+      display: flex;
+      justify-content: center;
+      gap: clamp(32px, 6vw, 64px);
+      flex-wrap: wrap;
+      max-width: 720px;
+      margin: 0 auto 40px;
+      padding: 20px 28px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(212, 167, 84, 0.04);
+    }
+    .etki-summary-item { text-align: center; }
+    .etki-summary-num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3vw, 36px);
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 6px;
+      letter-spacing: -0.5px;
+    }
+    .etki-summary-label {
+      font-size: 11px;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      font-weight: 500;
     }
 
     /* Last update timestamp */
@@ -287,6 +318,18 @@
 
     <!-- Quote -->
     <p class="etki-quote">"Mutluluğu sergileme, huzuru yaşa."</p>
+
+    <!-- Site özet bandı: toplam ziyaret + tekil ziyaretçi -->
+    <div class="etki-summary" id="etki-summary" aria-label="Site geneli ziyaret özeti">
+      <div class="etki-summary-item">
+        <div class="etki-summary-num" data-total>—</div>
+        <div class="etki-summary-label">Toplam Ziyaret</div>
+      </div>
+      <div class="etki-summary-item">
+        <div class="etki-summary-num" data-unique>—</div>
+        <div class="etki-summary-label">Tekil Ziyaretçi</div>
+      </div>
+    </div>
 
     <!-- Metric Grid -->
     <div class="etki-grid" id="etki-grid">
@@ -414,8 +457,28 @@
       });
     }
 
+    function updateSummary() {
+      // GoatCounter TOTAL: tüm sayfa görüntülemeleri (count) + tekil ziyaretçi (count_unique)
+      fetch(GC_BASE + 'TOTAL.json', { cache: 'no-store' })
+        .then(function (r) {
+          if (!r.ok) return null;
+          return r.json();
+        })
+        .then(function (j) {
+          if (!j) return;
+          var totalEl  = document.querySelector('[data-total]');
+          var uniqueEl = document.querySelector('[data-unique]');
+          var tot = parseInt(j.count, 10);
+          var uni = parseInt(j.count_unique, 10);
+          if (totalEl)  totalEl.textContent  = fmt(isFinite(tot) ? tot : 0);
+          if (uniqueEl) uniqueEl.textContent = fmt(isFinite(uni) ? uni : 0);
+        })
+        .catch(function () { /* sessiz */ });
+    }
+
     function updateAll() {
       cards.forEach(updateCard);
+      updateSummary();
       var now = new Date();
       var hh = String(now.getHours()).padStart(2, '0');
       var mm = String(now.getMinutes()).padStart(2, '0');
