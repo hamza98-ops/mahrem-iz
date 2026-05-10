@@ -341,14 +341,30 @@
         </p>
       </div>
 
+      <!-- Değerlendirme künyesi: hesap adı + platform + tarih.
+           SADECE yerel kullanım — kullanıcının çıktıda görmesi için; sunucuya gitmez. -->
+      <div class="karne-form" role="group" aria-label="Değerlendirme künyesi">
+        <div class="karne-form-field">
+          <label for="karneAccount">Değerlendirilen hesap</label>
+          <input type="text" id="karneAccount" placeholder="@kullanici_adi" autocomplete="off" maxlength="80" />
+        </div>
+        <div class="karne-form-field">
+          <label for="karnePlatform">Platform</label>
+          <input type="text" id="karnePlatform" placeholder="Instagram, TikTok, X…" autocomplete="off" maxlength="40" />
+        </div>
+        <div class="karne-form-field">
+          <label for="karneDate">Tarih</label>
+          <input type="date" id="karneDate" />
+        </div>
+      </div>
+
       <div class="karne-grid" id="karneGrid">
 
         <!-- KARNE KARTI — her birinde fieldset + radio ile erişilebilir yıldız puanlama -->
-        <div class="karne-card karne-card--redline" data-criterion="1" data-weight="30" data-redline="true">
+        <div class="karne-card karne-card--redline" data-criterion="1" data-redline="true">
           <div class="karne-card-header">
             <div class="karne-num">01</div>
             <div class="karne-meta">
-              <span class="karne-weight" title="Toplam skordaki ağırlığı">%30</span>
               <span class="karne-redline" title="1 yıldız tetiklenirse sonuç otomatik kırmızı olur">Kırmızı çizgi</span>
             </div>
             <fieldset class="karne-stars" data-id="1">
@@ -364,11 +380,10 @@
           <p>Hesap, çocukları içeriğin merkezine koyuyor mu? Ağlama, hastalık veya mahcubiyet anları paylaşılıyor mu? Bir çocuğun rızası olmadan kamuoyuna sunulması, onun dijital kimliği üzerindeki en temel hakkını ihlal eder.</p>
         </div>
 
-        <div class="karne-card" data-criterion="2" data-weight="15">
+        <div class="karne-card" data-criterion="2">
           <div class="karne-card-header">
             <div class="karne-num">02</div>
             <div class="karne-meta">
-              <span class="karne-weight" title="Toplam skordaki ağırlığı">%15</span>
             </div>
             <fieldset class="karne-stars" data-id="2">
               <legend class="sr-only">Puan (1–5 yıldız)</legend>
@@ -383,11 +398,10 @@
           <p>Ücretli iş birlikleri ve sponsorlu içerikler açıkça belirtiliyor mu? Bir influencer, reklamı içerik gibi sunduğunda yalnızca yasaları değil, güveni de çiğner.</p>
         </div>
 
-        <div class="karne-card karne-card--redline" data-criterion="3" data-weight="20" data-redline="true">
+        <div class="karne-card karne-card--redline" data-criterion="3" data-redline="true">
           <div class="karne-card-header">
             <div class="karne-num">03</div>
             <div class="karne-meta">
-              <span class="karne-weight" title="Toplam skordaki ağırlığı">%20</span>
               <span class="karne-redline" title="1 yıldız tetiklenirse sonuç otomatik kırmızı olur">Kırmızı çizgi</span>
             </div>
             <fieldset class="karne-stars" data-id="3">
@@ -403,11 +417,10 @@
           <p>Eş kavgaları, çocuk isyanları veya aile krizleri "eğlenceli içerik" olarak sunuluyor mu? Aile içi gerilimlerin izleyici kazanmak için sergilenmesi, mahremiyetin en derin biçimde ihlalidir.</p>
         </div>
 
-        <div class="karne-card" data-criterion="4" data-weight="10">
+        <div class="karne-card" data-criterion="4">
           <div class="karne-card-header">
             <div class="karne-num">04</div>
             <div class="karne-meta">
-              <span class="karne-weight" title="Toplam skordaki ağırlığı">%10</span>
             </div>
             <fieldset class="karne-stars" data-id="4">
               <legend class="sr-only">Puan (1–5 yıldız)</legend>
@@ -422,11 +435,10 @@
           <p>Hesabın içerikleri size "yeterli olmadığınızı" hissettiriyor mu? Gösteriş içerikli paylaşımlar, sosyal medyanın ruhsal hasarlarından biri olan kıskançlığı sistematik olarak üretir.</p>
         </div>
 
-        <div class="karne-card" data-criterion="5" data-weight="10">
+        <div class="karne-card" data-criterion="5">
           <div class="karne-card-header">
             <div class="karne-num">05</div>
             <div class="karne-meta">
-              <span class="karne-weight" title="Toplam skordaki ağırlığı">%10</span>
             </div>
             <fieldset class="karne-stars" data-id="5">
               <legend class="sr-only">Puan (1–5 yıldız)</legend>
@@ -441,11 +453,11 @@
           <p>Hesap, çocukların ve izleyicilerin ekran başında geçireceği zamanı artırmayı hedefleyen içerikler üretiyor mu? Gerçek hayat bağlarını güçlendiriyor mu, yoksa koparıyor mu?</p>
         </div>
 
-        <div class="karne-card" data-criterion="6" data-weight="10">
+        <div class="karne-card karne-card--redline" data-criterion="6" data-redline="true">
           <div class="karne-card-header">
             <div class="karne-num">06</div>
             <div class="karne-meta">
-              <span class="karne-weight" title="Toplam skordaki ağırlığı">%10</span>
+              <span class="karne-redline" title="Kritik kriter — kırmızı çizgi etiketli">Kırmızı çizgi</span>
             </div>
             <fieldset class="karne-stars" data-id="6">
               <legend class="sr-only">Puan (1–5 yıldız)</legend>
@@ -460,11 +472,10 @@
           <p>Dini ya da geleneksel değerler, yalnızca içerik üretmek veya ürün satmak amacıyla kullanılıyor mu? Bu davranış hem dini değerlere hem de izleyiciye zarar verir.</p>
         </div>
 
-        <div class="karne-card" data-criterion="7" data-weight="5">
+        <div class="karne-card" data-criterion="7">
           <div class="karne-card-header">
             <div class="karne-num">07</div>
             <div class="karne-meta">
-              <span class="karne-weight" title="Toplam skordaki ağırlığı">%5</span>
             </div>
             <fieldset class="karne-stars" data-id="7">
               <legend class="sr-only">Puan (1–5 yıldız)</legend>
@@ -481,22 +492,38 @@
 
       </div>
 
-      <!-- SONUÇ KUTUSU -->
+      <!-- SONUÇ KUTUSU — PDF "TOPLAM PUAN" formu ile hizalı: 0-35 basit toplam -->
       <div class="karne-result" id="karneResult">
-        <div class="result-traffic" id="resultTraffic" aria-hidden="true"></div>
+        <div class="result-headline">Toplam Puan</div>
         <div class="result-score">
           <span id="scoreValue">–</span>
-          <span class="result-label">/ 100</span>
+          <span class="result-label">/ 35  puan</span>
         </div>
-        <div class="result-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="resultBar">
+        <div class="result-bar" role="progressbar" aria-valuemin="0" aria-valuemax="35" aria-valuenow="0" id="resultBar">
           <div class="result-fill" id="resultFill"></div>
         </div>
+        <div class="result-pill" id="resultPill" hidden>
+          <span class="result-pill-dot" aria-hidden="true"></span>
+          <span class="result-pill-label" id="resultPillLabel"></span>
+        </div>
+
         <p class="result-text" id="resultText">Kriterleri değerlendirin, sonuç burada görünecek.</p>
+
         <p class="result-redline" id="resultRedline" hidden>
-          <strong>⚠ Kırmızı çizgi tetiklendi:</strong> <span id="resultRedlineReason"></span>
+          <strong>⚠ Kırmızı çizgi etiketli kriterlerde düşük puan:</strong>
+          <span id="resultRedlineReason"></span>
         </p>
+
+        <!-- Sonuç aralığı — referans (PDF'teki "Sonuç aralığı" kutusunun karşılığı) -->
+        <ul class="result-legend" aria-label="Sonuç aralığı referansı">
+          <li><span class="result-dot result-dot--red"></span> 0–13 · Yüksek risk</li>
+          <li><span class="result-dot result-dot--yellow"></span> 14–24 · Dikkat</li>
+          <li><span class="result-dot result-dot--green"></span> 25–35 · Uygun</li>
+        </ul>
+
         <div class="result-actions">
           <button class="btn btn-primary" id="resetKarne">Karneyi Sıfırla</button>
+          <button class="btn btn-secondary" id="printKarne" style="display:none">PDF / Yazdır</button>
           <button class="btn btn-secondary" id="shareCardBtn" style="display:none">Paylaşım Kartı Üret</button>
           <button class="btn" id="copyKarne" style="display:none">Metni Kopyala</button>
         </div>

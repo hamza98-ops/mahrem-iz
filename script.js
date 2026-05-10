@@ -171,94 +171,109 @@ document.querySelectorAll('.karne-stars').forEach(group => {
   });
 });
 
-/* Ağırlıklar (HTML data-weight ile senkron) ve kırmızı çizgi kriterler */
-const KARNE_WEIGHTS = { 1: 30, 2: 15, 3: 20, 4: 10, 5: 10, 6: 10, 7: 5 };
+/* PDF matbaa formuna hizalı: 0-35 basit toplam (7 kriter × max 5 yıldız).
+   3 kademe: 0-13 Yüksek risk · 14-24 Dikkat · 25-35 Uygun.
+   Kırmızı çizgi etiketli kriterler (PDF sol kenarı): 1, 3, 6.
+   PDF basit toplam mantığını korumak için override yok; ama 1-2 yıldız
+   alındığında ayrı bir "kırmızı çizgi düşük puan" uyarısı gösterilir. */
 const KARNE_REDLINES = {
-  1: 'Kriter 1 — çocuk mahremiyetine 1 yıldız: çocukları içeriğin merkezine koymak ve mahrem anlarını kamuya açmak temel hak ihlalidir.',
-  3: 'Kriter 3 — aile dinamiklerini araçsallaştırmaya 1 yıldız: kavga, gerilim ve duygusal anların eğlence içeriği yapılması mahremiyetin en derin ihlalidir.'
+  1: 'Çocuk Mahremiyetine Saygı',
+  3: 'Aile Dinamiklerinin Araçsallaştırılması',
+  6: 'Din veya Değerlerin Araçsallaştırılması'
 };
 
-function computeKarne() {
-  // Ağırlıklı yüzde puan: Σ (yıldız/5 × ağırlık)
-  let weighted = 0;
-  let answered = 0;
-  Object.entries(KARNE_WEIGHTS).forEach(([id, w]) => {
-    const v = scores[id] || 0;
-    if (v > 0) {
-      weighted += (v / 5) * w;
-      answered++;
-    }
-  });
-  const pct = Math.round(weighted);
+const KARNE_LEVELS = {
+  uygun:    { min: 25, max: 35, label: 'Uygun',       color: 'green',  symbol: '✓',
+              text: '✓ Uygun — Bu hesap genel olarak mahremiyete ve aile etiğine saygılı görünüyor. Değerlerinizle örtüşüyorsa bilinçli takip edebilirsiniz; çocuk içeriklerini yine de dönemsel gözden geçirin.' },
+  dikkat:   { min: 14, max: 24, label: 'Dikkat',      color: 'yellow', symbol: '⚠',
+              text: '⚠ Dikkat — Hesap birçok kriterde orta düzey. Bildirimleri kapatın, çocuk içeriklerini ayrıca değerlendirin; reklam/sponsorluk işaretlerini yakından izleyin.' },
+  yuksekRisk:{ min: 0,  max: 13, label: 'Yüksek risk', color: 'red',    symbol: '✗',
+              text: '✗ Yüksek risk — Hesap mahremiyet ve aile etiği açısından ciddi endişeler barındırıyor. Takibi sınırlandırın; çocuk içeriklerini beğenip paylaşmayın, benzer içerikleri algoritmaya beslemeyin.' }
+};
 
-  // Kırmızı çizgi: kritik kriterlere 1 yıldız verildiyse otomatik kırmızı
+function levelFor(total) {
+  if (total >= 25) return KARNE_LEVELS.uygun;
+  if (total >= 14) return KARNE_LEVELS.dikkat;
+  return KARNE_LEVELS.yuksekRisk;
+}
+
+function computeKarne() {
+  // Basit toplam: 0-35.
+  let total = 0;
+  let answered = 0;
+  for (let i = 1; i <= 7; i++) {
+    const v = scores[i] || 0;
+    if (v > 0) { total += v; answered++; }
+  }
+  // Kırmızı çizgi düşük puan: kritik kriterlere 1-2 yıldız → uyarı.
   const tripped = [];
   Object.keys(KARNE_REDLINES).forEach(id => {
-    if (scores[id] === 1) tripped.push(id);
+    if (scores[id] > 0 && scores[id] <= 2) tripped.push(id);
   });
-
-  return { pct, answered, tripped };
+  return { total, answered, tripped };
 }
 
 function updateKarneScore() {
-  const { pct, answered, tripped } = computeKarne();
+  const { total, answered, tripped } = computeKarne();
 
-  // Skor görünümü
-  document.getElementById('scoreValue').textContent = answered === 0 ? '–' : pct;
-  document.getElementById('resultFill').style.width = pct + '%';
+  // Skor görünümü (0-35)
+  document.getElementById('scoreValue').textContent = answered === 0 ? '–' : total;
+  const fillPct = answered === 0 ? 0 : Math.round((total / 35) * 100);
+  document.getElementById('resultFill').style.width = fillPct + '%';
   const bar = document.getElementById('resultBar');
-  if (bar) bar.setAttribute('aria-valuenow', pct);
+  if (bar) bar.setAttribute('aria-valuenow', total);
 
-  // Trafik ışığı + sözel hüküm (kırmızı çizgi öncelikli)
-  const traffic   = document.getElementById('resultTraffic');
-  const redlineEl = document.getElementById('resultRedline');
+  const pillEl       = document.getElementById('resultPill');
+  const pillLabelEl  = document.getElementById('resultPillLabel');
+  const fillEl       = document.getElementById('resultFill');
+  const redlineEl    = document.getElementById('resultRedline');
   const redlineReasonEl = document.getElementById('resultRedlineReason');
-  let level, text;
+  const textEl       = document.getElementById('resultText');
 
   if (answered === 0) {
-    traffic.className = 'result-traffic';
-    text = 'Kriterleri değerlendirin, sonuç burada görünecek.';
+    pillEl.hidden = true;
     redlineEl.hidden = true;
-  } else if (tripped.length > 0) {
-    // Kırmızı çizgi tetiklendi — skor yüksek olsa da kırmızı
-    level = 'red';
-    traffic.className = 'result-traffic red';
-    text = '✗ Kırmızı — Kırmızı çizgi tetiklendi. Diğer kriterler iyi olsa da çocuk veya aile mahremiyetinde temel bir ihlal işaretlendi. Takipten çıkmayı veya en azından bildirimleri kapatıp çocuk içeriklerini desteklememe önerilir.';
-    redlineReasonEl.textContent = tripped.map(id => KARNE_REDLINES[id]).join(' ');
+    if (fillEl) fillEl.className = 'result-fill';
+    textEl.textContent = 'Kriterleri değerlendirin, sonuç burada görünecek.';
+    return;
+  }
+
+  // Kategori belirleme + UI
+  const lvl = levelFor(total);
+  pillEl.hidden = false;
+  pillEl.className = 'result-pill result-pill--' + lvl.color;
+  pillLabelEl.textContent = lvl.symbol + ' ' + lvl.label;
+  if (fillEl) fillEl.className = 'result-fill result-fill--' + lvl.color;
+  textEl.textContent = lvl.text;
+
+  // Kırmızı çizgi düşük puan uyarısı
+  if (tripped.length > 0) {
     redlineEl.hidden = false;
-  } else if (pct >= 80) {
-    level = 'green';
-    traffic.className = 'result-traffic green';
-    text = '✓ Yeşil — Bu hesap mahremiyete büyük ölçüde saygı gösteriyor. Değerlerinizle örtüşüyorsa bilinçli olarak takip edebilirsiniz; çocuk içeriklerini yine de dönemsel gözden geçirin.';
-    redlineEl.hidden = true;
-  } else if (pct >= 55) {
-    level = 'yellow';
-    traffic.className = 'result-traffic yellow';
-    text = '⚠ Sarı — Orta düzey uyum. Bildirimleri kapatın, çocuk içeriklerini ayrıca değerlendirin; reklam ve sponsorluk işaretlerini yakından izleyin.';
-    redlineEl.hidden = true;
-  } else if (pct >= 30) {
-    level = 'orange';
-    traffic.className = 'result-traffic orange';
-    text = '⚠ Turuncu — Bu hesap birçok etik kriterde eksik. Takibi sınırlandırın, çocuk içeriklerini beğenip paylaşmayın, benzer içerikleri algoritmaya beslemeyin.';
-    redlineEl.hidden = true;
+    redlineReasonEl.textContent = tripped
+      .map(id => 'Kriter ' + id + ' — ' + KARNE_REDLINES[id])
+      .join(' · ');
   } else {
-    level = 'red';
-    traffic.className = 'result-traffic red';
-    text = '✗ Kırmızı — Bu hesap mahremiyet ve aile etiği açısından ciddi endişeler barındırıyor. Takipten çıkmanızı, gerekirse platforma bildirmenizi öneririz.';
     redlineEl.hidden = true;
   }
 
-  document.getElementById('resultText').textContent = text;
+  // Aksiyon butonlarını göster (PDF/Yazdır + Paylaşım kartı + Kopyala)
+  ['printKarne','shareCardBtn','copyKarne'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'inline-block';
+  });
 
-  // Kopyala butonunu göster
-  const copyBtn = document.getElementById('copyKarne');
-  if (copyBtn) copyBtn.style.display = answered > 0 ? 'inline-block' : 'none';
-
-  // GoatCounter: 7 kriterin tamamı doldurulduğunda + kırmızı çizgi tetiklendiğinde
+  // GoatCounter — sadece 7/7 dolduğunda bir kez (anonim agregat için)
   if (answered === 7 && !updateKarneScore._sent) {
     updateKarneScore._sent = true;
     gcEvent('event/karne-completed');
+    if (lvl.color === 'red')         gcEvent('event/karne-yuksek-risk');
+    else if (lvl.color === 'yellow') gcEvent('event/karne-dikkat');
+    else                              gcEvent('event/karne-uygun');
     if (tripped.length > 0) gcEvent('event/karne-redline');
+    // Kriter bazlı düşük puan: hangi kriterler 1-2 yıldız aldı (etki sayfası için)
+    for (let i = 1; i <= 7; i++) {
+      if (scores[i] > 0 && scores[i] <= 2) gcEvent('event/karne-low-' + i);
+    }
   }
 }
 
@@ -272,28 +287,54 @@ document.getElementById('resetKarne').addEventListener('click', () => {
   });
   document.querySelectorAll('.karne-card').forEach(c => c.classList.remove('rated'));
   document.getElementById('scoreValue').textContent = '–';
-  document.getElementById('resultFill').style.width  = '0%';
-  document.getElementById('resultTraffic').className = 'result-traffic';
-  document.getElementById('resultText').textContent  = 'Kriterleri değerlendirin, sonuç burada görünecek.';
+  const fillEl = document.getElementById('resultFill');
+  if (fillEl) { fillEl.style.width = '0%'; fillEl.className = 'result-fill'; }
+  const pillEl = document.getElementById('resultPill');
+  if (pillEl) { pillEl.hidden = true; pillEl.className = 'result-pill'; }
+  document.getElementById('resultText').textContent = 'Kriterleri değerlendirin, sonuç burada görünecek.';
   const redlineEl = document.getElementById('resultRedline');
   if (redlineEl) redlineEl.hidden = true;
-  const copyBtn = document.getElementById('copyKarne');
-  if (copyBtn) copyBtn.style.display = 'none';
+  ['printKarne','shareCardBtn','copyKarne'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
   const bar = document.getElementById('resultBar');
   if (bar) bar.setAttribute('aria-valuenow', 0);
+  // Künye alanlarını da temizle
+  ['karneAccount','karnePlatform','karneDate'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
 });
 
-/* --- Sonucu Kopyala --- */
+/* --- Sonucu Kopyala (metin) --- */
 document.getElementById('copyKarne').addEventListener('click', async () => {
-  const { pct, tripped } = computeKarne();
-  const flag = tripped.length > 0 ? ' (Kırmızı çizgi tetiklendi)' : '';
-  const text = `Mahrem-İz Etik Karne\n${pct}/100${flag}\n${document.getElementById('resultText').textContent}\n\nmahremiz.com.tr`;
+  const { total, tripped } = computeKarne();
+  const lvl = levelFor(total);
+  const flag = tripped.length > 0 ? ' · kırmızı çizgi etiketli kriterde düşük puan' : '';
+  const text = `Mahrem-İz Etik Karne\n${total}/35 · ${lvl.label}${flag}\n${document.getElementById('resultText').textContent}\n\nmahremiz.com.tr`;
   try {
     await navigator.clipboard.writeText(text);
     showToast('Sonuç panoya kopyalandı!');
   } catch {
     showToast('Kopyalama desteklenmiyor, lütfen manuel kopyalayın.');
   }
+});
+
+/* --- Karneyi Yazdır / PDF olarak kaydet --- */
+document.getElementById('printKarne').addEventListener('click', () => {
+  // Print için body'ye işaret class'ı ekle: CSS @media print bunu kullanır.
+  document.body.classList.add('printing-karne');
+  gcEvent('event/karne-printed');
+  // afterprint sonrası class'ı kaldır
+  const cleanup = () => {
+    document.body.classList.remove('printing-karne');
+    window.removeEventListener('afterprint', cleanup);
+  };
+  window.addEventListener('afterprint', cleanup);
+  window.print();
+  // Bazı tarayıcılar afterprint event'i ateşlemez — fallback timeout
+  setTimeout(cleanup, 5000);
 });
 
 /* ================================================
@@ -318,17 +359,17 @@ document.getElementById('copyKarne').addEventListener('click', async () => {
     btn.style.display = answered > 0 ? 'inline-block' : 'none';
   });
 
-  function paletteFor(pct, redlineTripped) {
-    if (redlineTripped) return { color: '#e74c3c', label: 'KIRMIZI · ÇİZGİ AŞILDI', verdict: 'Mahremiyet ihlali', bg1: '#0f1f3d', bg2: '#4a1a1a' };
-    if (pct >= 80) return { color: '#27ae60', label: 'YEŞIL', verdict: 'Mahremiyete saygılı', bg1: '#0f1f3d', bg2: '#1a4a3a' };
-    if (pct >= 55) return { color: '#f39c12', label: 'SARI',  verdict: 'Eleştirel takip',     bg1: '#0f1f3d', bg2: '#4a3d1a' };
-    if (pct >= 30) return { color: '#e67e22', label: 'TURUNCU', verdict: 'Sınırla',           bg1: '#0f1f3d', bg2: '#4a2d1a' };
-    return                 { color: '#e74c3c', label: 'KIRMIZI', verdict: 'Takipten çık',     bg1: '#0f1f3d', bg2: '#4a1a1a' };
+  // Paylaşım kartı paleti — PDF 3 kademesi (Uygun/Dikkat/Yüksek risk).
+  // Kırmızı çizgi rozeti ana rengi değiştirmez; sadece üst rozet olarak görünür.
+  function paletteFor(total) {
+    if (total >= 25) return { color: '#27ae60', label: 'UYGUN',       verdict: 'Mahremiyete saygılı', bg1: '#0f1f3d', bg2: '#1a4a3a' };
+    if (total >= 14) return { color: '#f39c12', label: 'DİKKAT',      verdict: 'Eleştirel takip',     bg1: '#0f1f3d', bg2: '#4a3d1a' };
+    return                  { color: '#e74c3c', label: 'YÜKSEK RİSK', verdict: 'Takipten çık',         bg1: '#0f1f3d', bg2: '#4a1a1a' };
   }
 
   function drawCard(format) {
-    const { pct, tripped } = computeKarne();
-    const pal = paletteFor(pct, tripped.length > 0);
+    const { total, tripped } = computeKarne();
+    const pal = paletteFor(total);
 
     // Doğal boyut: story 1080×1920, square 1080×1080. Canvas iki boyut için yeniden ayarlanır.
     const W = 1080;
@@ -409,18 +450,18 @@ document.getElementById('copyKarne').addEventListener('click', async () => {
     ctx.arc(W/2, lightY, lightR, 0, Math.PI*2);
     ctx.fill();
 
-    // ---- SKOR (büyük rakam: yüzde) ----
+    // ---- SKOR (büyük rakam: 0-35) ----
     const scoreY = format === 'story' ? H * 0.52 : H * 0.55;
     ctx.fillStyle = '#ffffff';
     ctx.font = '700 240px "Playfair Display", Georgia, serif';
-    ctx.fillText(String(pct), W/2, scoreY);
+    ctx.fillText(String(total), W/2, scoreY);
     ctx.fillStyle = 'rgba(255,255,255,0.6)';
     ctx.font = '400 38px Inter, sans-serif';
-    ctx.fillText('/ 100  PUAN', W/2, scoreY + 46);
+    ctx.fillText('/ 35  PUAN', W/2, scoreY + 46);
 
-    // Kırmızı çizgi rozeti (varsa)
+    // Kırmızı çizgi rozeti (varsa) — kritik kriterde düşük puan uyarısı
     if (tripped.length > 0) {
-      const rW = 380, rH = 44, rX = (W - rW) / 2, rY = scoreY - 200;
+      const rW = 460, rH = 44, rX = (W - rW) / 2, rY = scoreY - 200;
       ctx.fillStyle = 'rgba(231,76,60,0.25)';
       roundRect(ctx, rX, rY, rW, rH, 22); ctx.fill();
       ctx.strokeStyle = 'rgba(231,76,60,0.8)';
@@ -428,7 +469,7 @@ document.getElementById('copyKarne').addEventListener('click', async () => {
       roundRect(ctx, rX, rY, rW, rH, 22); ctx.stroke();
       ctx.fillStyle = '#ff8a80';
       ctx.font = '700 22px Inter, sans-serif';
-      ctx.fillText('⚠ KIRMIZI ÇİZGİ TETİKLENDİ', W/2, rY + 29);
+      ctx.fillText('⚠ KIRMIZI ÇİZGİ ETİKETLİ KRİTERDE DÜŞÜK PUAN', W/2, rY + 29);
     }
 
     // ---- VERDICT BAR ----
@@ -439,10 +480,10 @@ document.getElementById('copyKarne').addEventListener('click', async () => {
     ctx.fillStyle = 'rgba(255,255,255,0.12)';
     roundRect(ctx, barX, barY, barW, barH, 7); ctx.fill();
     ctx.fillStyle = pal.color;
-    roundRect(ctx, barX, barY, barW * (pct/100), barH, 7); ctx.fill();
+    roundRect(ctx, barX, barY, barW * (total/35), barH, 7); ctx.fill();
     ctx.fillStyle = pal.color;
     ctx.font = '700 30px Inter, sans-serif';
-    ctx.fillText(`${pct}%   ·   ${pal.label}`, W/2, barY + 60);
+    ctx.fillText(`${total}/35   ·   ${pal.label}`, W/2, barY + 60);
     ctx.fillStyle = 'rgba(255,255,255,0.85)';
     ctx.font = '500 32px Inter, sans-serif';
     ctx.fillText(pal.verdict.toUpperCase(), W/2, barY + 100);
@@ -503,24 +544,24 @@ document.getElementById('copyKarne').addEventListener('click', async () => {
   }));
 
   dlBtn.addEventListener('click', () => {
-    const { pct } = computeKarne();
+    const { total } = computeKarne();
     const a = document.createElement('a');
     a.href     = canvas.toDataURL('image/png');
-    a.download = `mahrem-iz-etik-karne-${pct}-100.png`;
+    a.download = `mahrem-iz-etik-karne-${total}-35.png`;
     a.click();
     gcEvent('event/karne-card-downloaded');
     showToast('Kart indiriliyor.');
   });
 
   shareBtn.addEventListener('click', async () => {
-    const { pct, tripped } = computeKarne();
-    const flagged = tripped.length > 0 ? ' (Kırmızı çizgi tetiklendi)' : '';
+    const { total, tripped } = computeKarne();
+    const flagged = tripped.length > 0 ? ' (kırmızı çizgi etiketli kriterde düşük puan)' : '';
     canvas.toBlob(async blob => {
       if (!blob) { showToast('Kart üretilemedi.'); return; }
-      const file = new File([blob], `mahrem-iz-karne-${pct}.png`, { type: 'image/png' });
+      const file = new File([blob], `mahrem-iz-karne-${total}-35.png`, { type: 'image/png' });
       const data = {
         title: 'Mahrem-İz Etik Karne',
-        text:  `Bu hesabı Mahrem-İz Etik Karne ile ${pct}/100 puan${flagged} olarak değerlendirdim. Sen de değerlendir:`,
+        text:  `Bir hesabı Mahrem-İz Etik Karne ile ${total}/35 puan${flagged} olarak değerlendirdim. Sen de değerlendir:`,
         url:   'https://mahremiz.com.tr/#karne',
         files: [file],
       };
