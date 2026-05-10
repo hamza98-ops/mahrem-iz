@@ -3559,14 +3559,39 @@ em { font-style: italic; color: var(--gold-text); }
 }
 
 @media print {
-  /* Sözleşme yazdırma — body.printing-karne YOKSA aktif.
-     Yapısal seçim: body'nin direkt çocuklarından sadece #rehber kalır. */
-  body:not(.printing-karne) > *:not(#rehber) { display: none !important; }
-  body:not(.printing-karne) > #rehber { display: block !important; }
+  /* SÖZLEŞME YAZDIRMA — body.printing-karne YOKSA aktif.
+     Visibility-based standart print pattern: tüm body invisible yapılır,
+     yalnızca #rehber ve onun descendant'ları visible kalır. #rehber
+     position:absolute ile sayfanın üstüne yerleştirilir, böylece
+     öncesinde gelen section'ların yer kaplaması ile boş sayfa
+     üretilmez. (display:none bazı tarayıcılarda CSS specificity
+     veya parser quirks ile beklenmedik biçimde tetiklenebiliyordu.) */
+  body:not(.printing-karne) * {
+    visibility: hidden !important;
+  }
+  body:not(.printing-karne) #rehber,
+  body:not(.printing-karne) #rehber * {
+    visibility: visible !important;
+  }
+  body:not(.printing-karne) #rehber {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    right: 0 !important;
+    margin: 0 !important;
+  }
 
-  /* Sözleşme bloğu içindeki dekoratif/yardımcı öğeler de print'e gitmesin */
-  .sozlesme-cta, .sozlesme-intro, .hero-scroll-hint, .toast,
-  .madde-check, .fikh-popover, .share-modal { display: none !important; }
+  /* Sözleşme bloğu içindeki dekoratif/yardımcı öğeler print'e gitmesin */
+  body:not(.printing-karne) .sozlesme-cta,
+  body:not(.printing-karne) .sozlesme-intro,
+  body:not(.printing-karne) .hero-scroll-hint,
+  body:not(.printing-karne) .toast,
+  body:not(.printing-karne) .madde-check,
+  body:not(.printing-karne) .fikh-popover,
+  body:not(.printing-karne) .share-modal {
+    visibility: hidden !important;
+    display: none !important;
+  }
 
   html, body {
     background: #ffffff !important;
@@ -3797,11 +3822,24 @@ em { font-style: italic; color: var(--gold-text); }
    kurallarını override eder, sadece karne A4 formunu yazdırır.
    ================================================ */
 @media print {
-  /* Karne yazdırma — body.printing-karne aktif iken.
-     Yapısal seçim: body'nin direkt çocuklarından sadece #karne kalır. */
-  body.printing-karne > *:not(#karne) { display: none !important; }
-  body.printing-karne > #karne {
-    display: block !important;
+  /* KARNE YAZDIRMA — body.printing-karne aktif iken.
+     Aynı visibility-based pattern: tüm body invisible, yalnızca
+     #karne ve descendant'ları visible. #karne #anasayfa içinde
+     olduğu için body > #karne selector'u çalışmaz; bu yüzden
+     'body.printing-karne #karne' (descendant) kullanılır. */
+  body.printing-karne * {
+    visibility: hidden !important;
+  }
+  body.printing-karne #karne,
+  body.printing-karne #karne * {
+    visibility: visible !important;
+  }
+  body.printing-karne #karne {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    right: 0 !important;
+    margin: 0 !important;
     padding: 0 !important;
     background: #ffffff !important;
   }
