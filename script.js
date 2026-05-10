@@ -804,10 +804,9 @@ document.querySelectorAll('.yt-facade').forEach(facade => {
   const trigger = facade.querySelector('.yt-facade-trigger');
   if (!trigger) return;
   trigger.addEventListener('click', () => {
-    const id = facade.dataset.yt || 'unknown';
-    gcEvent('event/video-played-' + id);
     const id    = facade.dataset.yt;
     const title = facade.dataset.title || 'YouTube video';
+    gcEvent('event/video-played-' + (id || 'unknown'));
     if (!id) return;
     const iframe = document.createElement('iframe');
     iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
