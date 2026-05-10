@@ -3455,12 +3455,22 @@ em { font-style: italic; color: var(--gold-text); }
 }
 
 @media print {
-  /* Sözleşme dışındaki her şeyi sustur */
-  .navbar, .hero, .stats-section, .vision-section, .akademi-section,
-  .fikhi-section, .karne-section, .yas-rehber, .manifesto-block, .hakkimizda-section,
+  /* Sözleşme dışındaki her şeyi sustur — açık liste */
+  .navbar, .hero,
+  .paylasim-section, .karne-section, .temizlik-section,
+  .stats-section, .anket-section, .vision-section,
+  .tanitim-section, .kriz-rehberi,
+  .akademi-section, .fikhi-section,
+  .manifesto-section, .ilkeler-section, .etki-section,
+  .yas-rehber, .manifesto-block, .hakkimizda-section,
   .iletisim-section, .kaynakca-section, .footer,
   .sozlesme-cta, .sozlesme-intro, .hero-scroll-hint, .toast,
   .madde-check, .fikh-popover, .share-modal { display: none !important; }
+
+  /* Yapısal güvence: ileride eklenecek section'lar print'i kirletmesin.
+     Sadece sözleşmeyi içeren #rehber ve onun ataları görünür kalır. */
+  body > *:not(:has(#rehber)),
+  main > *:not(#rehber):not(.rehber-section) { display: none !important; }
 
   html, body {
     background: #ffffff !important;
