@@ -3559,22 +3559,14 @@ em { font-style: italic; color: var(--gold-text); }
 }
 
 @media print {
-  /* Sözleşme dışındaki her şeyi sustur — açık liste */
-  .navbar, .hero,
-  .paylasim-section, .karne-section, .temizlik-section,
-  .stats-section, .anket-section, .vision-section,
-  .tanitim-section, .kriz-rehberi,
-  .akademi-section, .fikhi-section,
-  .manifesto-section, .ilkeler-section, .etki-section,
-  .yas-rehber, .manifesto-block, .hakkimizda-section,
-  .iletisim-section, .kaynakca-section, .footer,
+  /* Sözleşme yazdırma — body.printing-karne YOKSA aktif.
+     Yapısal seçim: body'nin direkt çocuklarından sadece #rehber kalır. */
+  body:not(.printing-karne) > *:not(#rehber) { display: none !important; }
+  body:not(.printing-karne) > #rehber { display: block !important; }
+
+  /* Sözleşme bloğu içindeki dekoratif/yardımcı öğeler de print'e gitmesin */
   .sozlesme-cta, .sozlesme-intro, .hero-scroll-hint, .toast,
   .madde-check, .fikh-popover, .share-modal { display: none !important; }
-
-  /* Yapısal güvence: ileride eklenecek section'lar print'i kirletmesin.
-     Sadece sözleşmeyi içeren #rehber ve onun ataları görünür kalır. */
-  body > *:not(:has(#rehber)),
-  main > *:not(#rehber):not(.rehber-section) { display: none !important; }
 
   html, body {
     background: #ffffff !important;
@@ -3805,41 +3797,14 @@ em { font-style: italic; color: var(--gold-text); }
    kurallarını override eder, sadece karne A4 formunu yazdırır.
    ================================================ */
 @media print {
-  /* Sözleşme print kurallarını kapat */
-  body.printing-karne .sozlesme-block,
-  body.printing-karne #rehber,
-  body.printing-karne .rehber-section { display: none !important; }
-
-  /* Sayfa içeriğini sustur, sadece karne section görünsün */
-  body.printing-karne .navbar,
-  body.printing-karne .hero,
-  body.printing-karne .paylasim-section,
-  body.printing-karne .temizlik-section,
-  body.printing-karne .stats-section,
-  body.printing-karne .anket-section,
-  body.printing-karne .vision-section,
-  body.printing-karne .tanitim-section,
-  body.printing-karne .kriz-rehberi,
-  body.printing-karne .akademi-section,
-  body.printing-karne .fikhi-section,
-  body.printing-karne .manifesto-section,
-  body.printing-karne .ilkeler-section,
-  body.printing-karne .etki-section,
-  body.printing-karne .yas-rehber,
-  body.printing-karne .manifesto-block,
-  body.printing-karne .hakkimizda-section,
-  body.printing-karne .iletisim-section,
-  body.printing-karne .kaynakca-section,
-  body.printing-karne .footer,
-  body.printing-karne .toast,
-  body.printing-karne .share-modal,
-  body.printing-karne .fikh-popover { display: none !important; }
-
-  /* Body :has yapı güvencesini override et: karne görünür kalsın */
-  body.printing-karne > *:not(:has(#karne)),
-  body.printing-karne main > *:not(#karne):not(.karne-section) { display: none !important; }
-  body.printing-karne #karne,
-  body.printing-karne .karne-section { display: block !important; padding: 0 !important; background: #ffffff !important; }
+  /* Karne yazdırma — body.printing-karne aktif iken.
+     Yapısal seçim: body'nin direkt çocuklarından sadece #karne kalır. */
+  body.printing-karne > *:not(#karne) { display: none !important; }
+  body.printing-karne > #karne {
+    display: block !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
 
   /* Karne içinde print için sade düzen */
   body.printing-karne .karne-intro,
