@@ -2941,8 +2941,13 @@ em { font-style: italic; color: var(--gold-text); }
 @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes bounce     { 0%, 100% { transform: rotate(45deg) translate(0,0); } 50% { transform: rotate(45deg) translate(4px,4px); } }
 
-[data-aos] { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
-[data-aos].aos-animate { opacity: 1; transform: translateY(0); }
+/* Progressive enhancement: JS hazır değilse içerik DAİMA görünür kalır.
+   .js-aos class'ı script.js init'inde <html>'e eklenir; ancak o zaman
+   gizleyip aos-animate ile yumuşak gösteririz. JS hata atarsa bile
+   kullanıcı içeriği görür. */
+[data-aos] { opacity: 1; transform: none; transition: opacity 0.7s ease, transform 0.7s ease; }
+.js-aos [data-aos] { opacity: 0; transform: translateY(30px); }
+.js-aos [data-aos].aos-animate { opacity: 1; transform: translateY(0); }
 [data-aos][data-aos-delay="60"]  { transition-delay: 0.06s; }
 [data-aos][data-aos-delay="100"] { transition-delay: 0.1s; }
 [data-aos][data-aos-delay="120"] { transition-delay: 0.12s; }

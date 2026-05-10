@@ -99,8 +99,15 @@ document.addEventListener('keydown', e => {
 /* ================================================
    AOS — Özel hafif implementasyon
    (defer sayesinde DOM hazır, harici lib gerek yok)
+
+   Progressive enhancement: JS init'i tamamlanmadan içerik görünür
+   kalır. .js-aos sınıfı eklendiği anda CSS gizleme kuralları devreye
+   girer; bir güvence olarak hâlâ aos-animate eklenmemiş elementlere
+   1.2 sn sonra fallback ile sınıf eklenir (observer'ı kaçıranlara).
    ================================================ */
 (function initAOS() {
+  document.documentElement.classList.add('js-aos');
+  const els = document.querySelectorAll('[data-aos]');
   const observer = new IntersectionObserver(
     entries => entries.forEach(e => {
       if (e.isIntersecting) {
@@ -110,7 +117,17 @@ document.addEventListener('keydown', e => {
     }),
     { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
   );
-  document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
+  els.forEach(el => observer.observe(el));
+  // Güvence: 1.2 sn sonra hâlâ aos-animate eksik viewport-içi elementler
+  // varsa onlara da sınıfı ekle (zayıf observer tetiklemesine karşı).
+  setTimeout(() => {
+    els.forEach(el => {
+      if (el.classList.contains('aos-animate')) return;
+      const r = el.getBoundingClientRect();
+      const inView = r.top < window.innerHeight && r.bottom > 0;
+      if (inView) el.classList.add('aos-animate');
+    });
+  }, 1200);
 })();
 
 /* ================================================
