@@ -223,6 +223,12 @@
       line-height: 1.5;
     }
 
+    /* Karne dağılımı kartları: 3 kademeye göre sol kenar rengi */
+    .etki-card--karne.karne-yuksek::before { background: linear-gradient(180deg, #e74c3c 0%, transparent 100%); opacity: 0.65; }
+    .etki-card--karne.karne-dikkat::before { background: linear-gradient(180deg, #f39c12 0%, transparent 100%); opacity: 0.65; }
+    .etki-card--karne.karne-uygun::before  { background: linear-gradient(180deg, #4ade80 0%, transparent 100%); opacity: 0.65; }
+    .etki-card--karne .etki-card-num { color: var(--gold); opacity: 0.55; }
+
     /* Footer info */
     .etki-foot {
       text-align: center;
@@ -374,6 +380,28 @@
         <div class="etki-card-value loading" data-value>—</div>
         <div class="etki-card-label">Kırmızı Çizgi Tetiklenmesi</div>
         <div class="etki-card-sub">Test bir mahremiyet riski tespit etti</div>
+      </article>
+
+      <!-- Karne kategori dağılımı: anonim agregat (hesap adı yok, sadece kategori sayımı) -->
+      <article class="etki-card etki-card--karne karne-yuksek" data-event="event/karne-yuksek-risk">
+        <div class="etki-card-num">⑦</div>
+        <div class="etki-card-value loading" data-value>—</div>
+        <div class="etki-card-label">Karne · Yüksek Risk</div>
+        <div class="etki-card-sub">0–13 puan kategorisinde değerlendirme</div>
+      </article>
+
+      <article class="etki-card etki-card--karne karne-dikkat" data-event="event/karne-dikkat">
+        <div class="etki-card-num">⑧</div>
+        <div class="etki-card-value loading" data-value>—</div>
+        <div class="etki-card-label">Karne · Dikkat</div>
+        <div class="etki-card-sub">14–24 puan kategorisinde değerlendirme</div>
+      </article>
+
+      <article class="etki-card etki-card--karne karne-uygun" data-event="event/karne-uygun">
+        <div class="etki-card-num">⑨</div>
+        <div class="etki-card-value loading" data-value>—</div>
+        <div class="etki-card-label">Karne · Uygun</div>
+        <div class="etki-card-sub">25–35 puan kategorisinde değerlendirme</div>
       </article>
 
     </div>
